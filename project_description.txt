@@ -1,0 +1,39 @@
+University
+
+Students study at the university. The student has a first and last name and belongs to the Group. 
+This group is the unit for which the Schedule will be drawn up. That is, each student of this group 
+will have the same schedule. Courses are taught at the university. The course has a name and a description. 
+Lessons are conducted by teachers. A teacher has a first name, last name, and one course they teach.
+Lessons are held in Classrooms. An Classrooms is a room for conducting a Lessons, which has its own number, 
+a description of its features (what equipment is in the Classroom, how many students it can accommodate) 
+and a list of courses that can be held here.
+
+When a Group of Students and a Teacher gather in the Classroom to study a certain Course, 
+it is called a Lesson. The Lesson is subject to the Schedule. That is, the Schedule is a table of Lesson. 
+The Lesson has its position in the schedule, which consists of the day of the week (Mon-Fri) and 
+the number of the Lesson (1-4). Also, the lesson contains information about the Classroom, Course, Teacher, Group.
+
+The totality of all classes of the University is the Schedule of the University. 
+By applying the "group" filter, you can get only Lessons for the selected group - 
+this will be the Schedule of the group (and the student from this group). 
+You can also filter Lessons for the Teacher - get the Teacher's Schedule 
+and for the Classroom - get the Classroom Schedule.
+
+Generation of the University Schedule is the main task of the initial stage of the program. 
+The Schedule itself will be a class that manages the Map of Positions and Cells. 
+A Position is a place on the Schedule table - Monday through Friday from the first Lesson to the fourth. 
+A Cell is a separate class that contains a List of Lessons. At the university, several classes 
+can be held in parallel at the same time. Cell contains this list of classes.
+
+The Schedule is subject to the following restrictions:
+- At the same time, there can be only one Lesson from one Teacher from one Course for one Group.
+- Parallel classes for different groups, classrooms, courses, teachers are allowed.
+- For one group there should be from 2 to 4 classes per day.
+- For one teacher there should be from 2 to 4 classes per day.
+- For a group, classes should be consecutive.
+- For a group or a teacher, classes may not start with the first Lesson, but with the 2nd or 3rd.
+The number and list of courses for the group is determined by the special Educational Program (curriculum). 
+The Curriculum is a table with a list of groups-rows and courses-columns. The number of lessons per week 
+is indicated in the cell at the intersection. That is, the row for the group will indicate the 
+number of Lessons from each Course available at the University. Some Courses will be 0 - they are not taught for this group. 
+Numbers 1-3 will indicate the number of lessons per week.

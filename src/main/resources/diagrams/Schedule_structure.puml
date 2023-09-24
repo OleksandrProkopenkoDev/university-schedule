@@ -1,0 +1,358 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": false,
+    "cutTests": true,
+    "cutClient": false,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": false,
+    "cutConstructors": false
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "ua.foxminded.task31.model.Schedule",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1446127104 { 
+   	label=foxminded
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_849771089 { 
+   	label=task31
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   Cell595754734[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Cell</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   lessons: List&lt;Lesson&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addLesson(lesson: Lesson)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getLessons(): List&lt;Lesson&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeLesson(lesson: Lesson)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Classroom1059051710[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Classroom</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   availableCourses: List&lt;Course&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   description: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   number: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Classroom(id: Long, number: String, description: String, availableCourses: List&lt;Course&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ Classroom()</TD></TR>
+<TR><TD ALIGN="LEFT" ># canEqual(other: Object): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getAvailableCourses(): List&lt;Course&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getDescription(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getId(): Long</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getNumber(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ hashCode(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setAvailableCourses(availableCourses: List&lt;Course&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setDescription(description: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setId(id: Long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setNumber(number: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Course1059051710[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Course</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   description: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Course(name: String, description: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ Course(id: Long, name: String, description: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ Course()</TD></TR>
+<TR><TD ALIGN="LEFT" ># canEqual(other: Object): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getDescription(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getId(): Long</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getName(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ hashCode(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setDescription(description: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setId(id: Long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setName(name: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Day83872354[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(E)Day</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   FRI: Day [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   MON: Day [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   THU: Day [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   TUE: Day [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   WED: Day [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ valueOf(name: String): Day</TD></TR>
+<TR><TD ALIGN="LEFT" >+ values(): Day[]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#DCFBD5"
+];
+
+Group1059051710[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Group</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   courses: List&lt;Course&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Group(name: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ Group(id: Long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ Group(id: Long, name: String, courses: List&lt;Course&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ Group()</TD></TR>
+<TR><TD ALIGN="LEFT" ># canEqual(other: Object): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCourses(): List&lt;Course&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getId(): Long</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getName(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ hashCode(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setCourses(courses: List&lt;Course&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setId(id: Long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setName(name: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Lesson1059051710[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Lesson</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   classroom: Classroom [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   course: Course [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   day: Day [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   group: Group [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lessonNumber: LessonNumber [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   teacher: Teacher [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Lesson(id: Long, day: Day, lessonNumber: LessonNumber, classroom: Classroom, group: Group, teacher: Teacher, course: Course)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ Lesson()</TD></TR>
+<TR><TD ALIGN="LEFT" ># canEqual(other: Object): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getClassroom(): Classroom</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCourse(): Course</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getDay(): Day</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getGroup(): Group</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getId(): Long</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getLessonNumber(): LessonNumber</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTeacher(): Teacher</TD></TR>
+<TR><TD ALIGN="LEFT" >+ hashCode(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setClassroom(classroom: Classroom)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setCourse(course: Course)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setDay(day: Day)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setGroup(group: Group)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setId(id: Long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setLessonNumber(lessonNumber: LessonNumber)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setTeacher(teacher: Teacher)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+LessonNumber83872354[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(E)LessonNumber</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   I: LessonNumber [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   II: LessonNumber [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   III: LessonNumber [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   IV: LessonNumber [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ valueOf(name: String): LessonNumber</TD></TR>
+<TR><TD ALIGN="LEFT" >+ values(): LessonNumber[]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#DCFBD5"
+];
+
+Position595754734[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Position</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   day: Day [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lessonNumber: LessonNumber [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Schedule595754734[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Schedule</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   schedule: Map&lt;Position, Cell&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addCell(cell: Cell)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeCell(cell: Cell)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Teacher1059051710[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Teacher</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   firstName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lastName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   teachCourse: Course [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Teacher(id: Long, firstName: String, lastName: String, teachCourse: Course)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ Teacher()</TD></TR>
+<TR><TD ALIGN="LEFT" ># canEqual(other: Object): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getFirstName(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getId(): Long</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getLastName(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getTeachCourse(): Course</TD></TR>
+<TR><TD ALIGN="LEFT" >+ hashCode(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setFirstName(firstName: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setId(id: Long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setLastName(lastName: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setTeachCourse(teachCourse: Course)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+Cell595754734 -> Lesson1059051710[label="lessons
+[0..*]"];
+Classroom1059051710 -> Course1059051710[label="availableCourses
+[0..*]"];
+Group1059051710 -> Course1059051710[label="courses
+[0..*]"];
+Lesson1059051710 -> Classroom1059051710[label="classroom
+[0..1]"];
+Lesson1059051710 -> Course1059051710[label="course
+[0..1]"];
+Lesson1059051710 -> Day83872354[label="day
+[0..1]"];
+Lesson1059051710 -> Group1059051710[label="group
+[0..1]"];
+Lesson1059051710 -> LessonNumber83872354[label="lessonNumber
+[0..1]"];
+Lesson1059051710 -> Teacher1059051710[label="teacher
+[0..1]"];
+Position595754734 -> Day83872354[label="day
+[0..1]"];
+Position595754734 -> LessonNumber83872354[label="lessonNumber
+[0..1]"];
+Schedule595754734 -> Cell595754734[label="schedule
+[0..*]"];
+Schedule595754734 -> Position595754734[label="schedule
+[0..*]"];
+Teacher1059051710 -> Course1059051710[label="teachCourse
+[0..1]"];
+    
+}
+@enduml

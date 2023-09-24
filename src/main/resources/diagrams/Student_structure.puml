@@ -1,0 +1,190 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": false,
+    "cutTests": true,
+    "cutClient": false,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": false,
+    "cutConstructors": false
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "ua.foxminded.task31.entity.Student",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1446127104 { 
+   	label=foxminded
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_849771089 { 
+   	label=task31
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   Course1059051710[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Course</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   description: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Course(name: String, description: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ Course(id: Long, name: String, description: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ Course()</TD></TR>
+<TR><TD ALIGN="LEFT" ># canEqual(other: Object): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getDescription(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getId(): Long</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getName(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ hashCode(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setDescription(description: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setId(id: Long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setName(name: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Group1059051710[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Group</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   courses: List&lt;Course&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Group(name: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ Group(id: Long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ Group(id: Long, name: String, courses: List&lt;Course&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ Group()</TD></TR>
+<TR><TD ALIGN="LEFT" ># canEqual(other: Object): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCourses(): List&lt;Course&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getId(): Long</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getName(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ hashCode(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setCourses(courses: List&lt;Course&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setId(id: Long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setName(name: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Student1059051710[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Student</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   firstName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   group: Group [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lastName: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Student(firstName: String, lastName: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ Student(group: Group, firstName: String, lastName: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ Student(id: Long, group: Group, firstName: String, lastName: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ Student()</TD></TR>
+<TR><TD ALIGN="LEFT" ># canEqual(other: Object): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getFirstName(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getGroup(): Group</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getId(): Long</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getLastName(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ hashCode(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setFirstName(firstName: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setGroup(group: Group)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setId(id: Long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setLastName(lastName: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+Group1059051710 -> Course1059051710[label="courses
+[0..*]"];
+Student1059051710 -> Group1059051710[label="group
+[0..1]"];
+    
+}
+@enduml
