@@ -29,7 +29,7 @@ public class Lesson {
     private Group group;
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @JoinColumn(name = "teacher_id",referencedColumnName = "teacher_id")
+    @JoinColumn(name = "teacher_id",referencedColumnName = "user_id")
     private Teacher teacher;
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
