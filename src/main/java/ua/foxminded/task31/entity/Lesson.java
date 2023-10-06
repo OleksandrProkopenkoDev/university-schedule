@@ -21,18 +21,18 @@ public class Lesson {
     private LessonNumber lessonNumber;
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @JoinColumn(name = "classroom_id",referencedColumnName = "classroom_id")
+    @JoinColumn(name = "classroom_id", referencedColumnName = "classroom_id")
     private Classroom classroom;
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @JoinColumn(name = "group_id",referencedColumnName = "group_id")
+    @JoinColumn(name = "group_id", referencedColumnName = "group_id")
     private Group group;
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @JoinColumn(name = "teacher_id",referencedColumnName = "user_id")
+    @JoinColumn(name = "teacher_id", referencedColumnName = "user_id")
     private Teacher teacher;
 
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @JoinColumn(name = "course_id",referencedColumnName = "course_id")
+    @JoinColumn(name = "course_id", referencedColumnName = "course_id")
     private Course course;
 }

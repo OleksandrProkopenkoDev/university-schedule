@@ -1,15 +1,17 @@
 package ua.foxminded.task31.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import ua.foxminded.task31.entity.enums.Role;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "students")
-public class Student extends UserEntity{
+public class Student extends UserEntity {
 
     @ManyToOne(
             cascade = {
@@ -20,16 +22,21 @@ public class Student extends UserEntity{
     @JoinColumn(name = "group_id", referencedColumnName = "group_id")
     private Group group;
 
+    public Student() {
+        this.setRole(Role.STUDENT);
+    }
 
     public Student(String firstName, String lastName) {
         super.setFirstName(firstName);
         super.setLastName(lastName);
+        this.setRole(Role.STUDENT);
     }
 
     public Student(Group group, String firstName, String lastName) {
-        this.group = group;
         super.setFirstName(firstName);
         super.setLastName(lastName);
+        this.group = group;
+        this.setRole(Role.STUDENT);
     }
 
     @Override
