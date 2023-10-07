@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ua.foxminded.task31.entity.enums.Day;
-import ua.foxminded.task31.entity.enums.LessonNumber;
+import ua.foxminded.task31.model.enums.Day;
+import ua.foxminded.task31.model.enums.LessonNumber;
 
 @Data
 @NoArgsConstructor

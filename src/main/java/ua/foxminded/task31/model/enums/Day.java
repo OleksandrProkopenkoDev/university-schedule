@@ -1,4 +1,4 @@
-package ua.foxminded.task31.entity.enums;
+package ua.foxminded.task31.model.enums;
 
 public enum Day {
     MON,

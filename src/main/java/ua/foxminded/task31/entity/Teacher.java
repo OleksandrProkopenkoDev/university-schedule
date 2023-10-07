@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import ua.foxminded.task31.entity.enums.Role;
+import ua.foxminded.task31.model.enums.Role;
 
 @Getter
 @Setter

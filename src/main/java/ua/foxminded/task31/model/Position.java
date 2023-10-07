@@ -1,7 +1,7 @@
 package ua.foxminded.task31.model;
 
-import ua.foxminded.task31.entity.enums.Day;
-import ua.foxminded.task31.entity.enums.LessonNumber;
+import ua.foxminded.task31.model.enums.Day;
+import ua.foxminded.task31.model.enums.LessonNumber;
 
 public class Position {
     private Day day;
