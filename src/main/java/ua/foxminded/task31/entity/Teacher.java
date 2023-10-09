@@ -20,4 +20,9 @@ public class Teacher extends UserEntity {
     public Teacher() {
         this.setRole(Role.TEACHER);
     }
+
+    public Teacher(String firstName, String lastName) {
+        super(firstName, lastName);
+        this.setRole(Role.TEACHER);
+    }
 }

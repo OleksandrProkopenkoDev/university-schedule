@@ -31,4 +31,9 @@ public class Curriculum {
     @MapKeyColumn(name = "course_id")
     @Column(name = "number_of_lessons")
     private Map<Integer, Integer> numberOfLessons;
+
+    public Curriculum(Group group, Map<Integer, Integer> numberOfLessons) {
+        this.group = group;
+        this.numberOfLessons = numberOfLessons;
+    }
 }

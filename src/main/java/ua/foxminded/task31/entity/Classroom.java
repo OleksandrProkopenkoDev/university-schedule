@@ -30,4 +30,9 @@ public class Classroom {
             inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "course_id")
     )
     private List<Course> availableCourses;
+
+    public Classroom(String number, String description) {
+        this.number = number;
+        this.description = description;
+    }
 }

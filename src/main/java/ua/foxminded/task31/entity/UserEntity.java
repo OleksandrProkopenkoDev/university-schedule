@@ -22,6 +22,10 @@ public class UserEntity {
     @Column(name = "last_name")
     private String lastName;
 
+    private String username;
+
+    private String password;
+
     private Role role;
 
     public UserEntity(String firstName, String lastName) {

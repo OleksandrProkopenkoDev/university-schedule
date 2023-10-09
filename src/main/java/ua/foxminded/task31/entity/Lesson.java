@@ -35,4 +35,11 @@ public class Lesson {
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id", referencedColumnName = "course_id")
     private Course course;
+
+    public Lesson(Classroom classroom, Group group, Teacher teacher, Course course) {
+        this.classroom = classroom;
+        this.group = group;
+        this.teacher = teacher;
+        this.course = course;
+    }
 }

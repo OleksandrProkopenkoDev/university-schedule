@@ -15,4 +15,9 @@ public class Admin extends UserEntity {
     public Admin() {
         this.setRole(Role.ADMIN);
     }
+
+    public Admin(String firstName, String lastName) {
+        super(firstName, lastName);
+        this.setRole(Role.ADMIN);
+    }
 }
