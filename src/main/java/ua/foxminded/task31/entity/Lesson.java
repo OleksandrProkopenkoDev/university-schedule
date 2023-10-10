@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import ua.foxminded.task31.model.enums.Day;
 import ua.foxminded.task31.model.enums.LessonNumber;
 
+import java.util.Objects;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -41,5 +43,31 @@ public class Lesson {
         this.group = group;
         this.teacher = teacher;
         this.course = course;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Lesson lesson = (Lesson) o;
+        return Objects.equals(classroom, lesson.classroom) || Objects.equals(group, lesson.group) || Objects.equals(teacher, lesson.teacher);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(classroom, group, teacher, course);
+    }
+
+    @Override
+    public String toString() {
+        return "Lesson{" +
+                "id=" + id +
+                ", day=" + day +
+                ", lessonNumber=" + lessonNumber +
+                ", classroom=" + classroom.getNumber() +
+                ", group=" + group.getName() +
+                ", teacher=" + teacher.getFirstName() + " "+teacher.getLastName() +
+                ", course=" + course.getName() +
+                '}';
     }
 }

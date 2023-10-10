@@ -89,7 +89,7 @@ public class GenerationServiceImpl implements GenerationService {
         int[][] curriculumTable = generateCurriculumTable(amount, courses.size());
         for (int i = 0; i < groups.size(); i++) {
             for (int j = 0; j < courses.size(); j++) {
-                if(curriculumTable[i][j] != 0){
+                if (curriculumTable[i][j] != 0) {
                     groups.get(i).getCourses().add(courses.get(j));
                 }
             }
@@ -102,7 +102,7 @@ public class GenerationServiceImpl implements GenerationService {
         List<Group> groups = generateGroups(amount);
         for (int i = 0; i < groups.size(); i++) {
             for (int j = 0; j < courses.size(); j++) {
-                if(curriculumTable[i][j] != 0){
+                if (curriculumTable[i][j] != 0) {
                     groups.get(i).getCourses().add(courses.get(j));
                 }
             }
@@ -128,7 +128,11 @@ public class GenerationServiceImpl implements GenerationService {
     @Override
     public List<Teacher> generateTeachers(int amount, List<Course> courses) {
         List<Teacher> teachers = generateTeachers(amount);
-        teachers.forEach(teacher -> teacher.setTeachCourse(courses.get(random.nextInt(courses.size()))));
+        // кожному викладачу по курсу. Може бути 2 викладачі з одним курсом. Викладачів має бути більше ніж курсів
+        for (int i = 0; i < teachers.size(); i++) {
+            teachers.get(i).setTeachCourse(courses.get(i % courses.size()));
+        }
+
         return teachers;
     }
 
@@ -159,7 +163,9 @@ public class GenerationServiceImpl implements GenerationService {
     @Override
     public List<Classroom> generateClassrooms(int amount, List<Course> courses) {
         List<Classroom> classrooms = generateClassrooms(amount);
+
         classrooms.forEach(classroom -> setAvailableCoursesFromList(courses, classroom));
+
         return classrooms;
     }
 
@@ -168,7 +174,7 @@ public class GenerationServiceImpl implements GenerationService {
         List<Course> collected = courses.stream()
                 .filter(course -> description.startsWith(course.getName().split(" ")[0]))
                 .collect(Collectors.toList());
-        int number = random.nextInt(3);
+        int number = random.nextInt(1, 4);
         for (int i = 0; i < number; i++) {
             collected.add(courses.get(random.nextInt(courses.size())));
         }
@@ -202,7 +208,6 @@ public class GenerationServiceImpl implements GenerationService {
                     }
                 }
             }
-            ;
         }
         return curriculum;
     }
@@ -214,19 +219,21 @@ public class GenerationServiceImpl implements GenerationService {
 
         for (int i = 0; i < curriculumTable.length; i++) {
             for (int j = 0; j < curriculumTable[i].length; j++) {
-                if(curriculumTable[i][j] != 0){
-                    Course course = universityDataDto.getCourses().get(j);
-                    Group group = universityDataDto.getGroups().get(i);
+                if (curriculumTable[i][j] != 0) {
+                    for (int k = 0; k < curriculumTable[i][j]; k++) {
+                        Course course = universityDataDto.getCourses().get(j);
+                        Group group = universityDataDto.getGroups().get(i);
 
-                    Classroom classroom = selectClassroomForCourse( universityDataDto.getClassrooms(), course);
-                    Teacher teacher = selectTeacherForCourse(universityDataDto.getTeachers(), course);
+                        Classroom classroom = selectClassroomForCourse(universityDataDto.getClassrooms(), course);
+                        Teacher teacher = selectTeacherForCourse(universityDataDto.getTeachers(), course);
 
-                    lessons.add(new Lesson(
-                            classroom,
-                            group,
-                            teacher,
-                            course
-                    ));
+                        lessons.add(new Lesson(
+                                classroom,
+                                group,
+                                teacher,
+                                course
+                        ));
+                    }
                 }
             }
         }
@@ -235,10 +242,10 @@ public class GenerationServiceImpl implements GenerationService {
 
     private Teacher selectTeacherForCourse(List<Teacher> teachers, Course course) {
         List<Teacher> teachersList = teachers.stream()
-                .filter(teacher -> teacher.getTeachCourse().equals(course))
+                .filter(teacher -> teacher.getTeachCourse().getName().equals(course.getName()))
                 .collect(Collectors.toList());
-        if(teachersList.isEmpty()){
-            throw new GenerationException("There is no available classrooms for "+course);
+        if (teachersList.isEmpty()) {
+            throw new GenerationException("There is no available classrooms for " + course);
         }
         int num = random.nextInt(teachersList.size());
 
@@ -248,10 +255,10 @@ public class GenerationServiceImpl implements GenerationService {
     private Classroom selectClassroomForCourse(List<Classroom> classrooms, Course course) {
         List<Classroom> classroomList = classrooms.stream()
                 .filter(classroom -> classroom.getAvailableCourses().stream()
-                        .anyMatch(course1 -> course1.equals(course)))
+                        .anyMatch(course1 -> course1.getName().equals(course.getName())))
                 .collect(Collectors.toList());
-        if(classroomList.isEmpty()){
-            throw new GenerationException("There is no available classrooms for "+course);
+        if (classroomList.isEmpty()) {
+            throw new GenerationException("There is no available classrooms for " + course);
         }
         int num = random.nextInt(classroomList.size());
 

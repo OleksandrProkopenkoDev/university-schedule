@@ -8,6 +8,7 @@ import ua.foxminded.task31.service.GenerationService;
 import ua.foxminded.task31.service.InitializationService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,7 +20,7 @@ class GenerationServiceImplTest {
     @BeforeEach
     void setUp() {
         underTest = new GenerationServiceImpl();
-        initializationService = new  InitializationServiceImpl(underTest);
+        initializationService = new InitializationServiceImpl(underTest);
     }
 
     @Test
@@ -117,9 +118,15 @@ class GenerationServiceImplTest {
     }
 
     @Test
-    void generateLessonsFromData(){
+    void generateLessonsFromData() {
         UniversityDataDto universityDataDto = initializationService.generateInitialData();
         List<Lesson> lessons = underTest.generateLessonsFrom(universityDataDto);
-        lessons.forEach(System.out::println);
+//        lessons.forEach(System.out::println);
+        Group group = lessons.get(0).getGroup();
+        List<Lesson> lessonList = lessons.stream()
+                .filter(lesson -> lesson.getGroup().equals(group))
+                .collect(Collectors.toList());
+        lessonList.forEach(System.out::println);
     }
+
 }
