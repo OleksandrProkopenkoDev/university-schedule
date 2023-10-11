@@ -128,7 +128,6 @@ public class GenerationServiceImpl implements GenerationService {
     @Override
     public List<Teacher> generateTeachers(int amount, List<Course> courses) {
         List<Teacher> teachers = generateTeachers(amount);
-        // кожному викладачу по курсу. Може бути 2 викладачі з одним курсом. Викладачів має бути більше ніж курсів
         for (int i = 0; i < teachers.size(); i++) {
             teachers.get(i).setTeachCourse(courses.get(i % courses.size()));
         }
@@ -245,7 +244,7 @@ public class GenerationServiceImpl implements GenerationService {
                 .filter(teacher -> teacher.getTeachCourse().getName().equals(course.getName()))
                 .collect(Collectors.toList());
         if (teachersList.isEmpty()) {
-            throw new GenerationException("There is no available classrooms for " + course);
+            throw new GenerationException("There is no available teachers for " + course);
         }
         int num = random.nextInt(teachersList.size());
 

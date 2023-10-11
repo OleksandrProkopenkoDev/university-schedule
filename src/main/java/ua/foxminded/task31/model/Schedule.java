@@ -1,6 +1,7 @@
 package ua.foxminded.task31.model;
 
 import lombok.Getter;
+import ua.foxminded.task31.entity.Group;
 import ua.foxminded.task31.entity.Lesson;
 import ua.foxminded.task31.model.enums.Day;
 import ua.foxminded.task31.model.enums.LessonNumber;
@@ -18,14 +19,9 @@ public class Schedule {
             for (LessonNumber lessonNumber: LessonNumber.values()) {
                 Position position = new Position(day, lessonNumber);
                 Cell cell = new Cell();
-                Cell put = schedule.put(position, cell);
-                System.out.println("Put cell: "+ cell);
+                schedule.put(position, cell);
             }
         }
-        System.out.println("in schedule constructor");
-        print();
-        System.out.println();
-        System.out.println(schedule);
     }
 
 
@@ -43,5 +39,34 @@ public class Schedule {
                 System.out.println(schedule.get(new Position(day, lessonNumber)));
             }
         }
+    }
+
+    public void printForGroup(Map<Position, Lesson> lessonMap){
+        for (Day day: Day.values()) {
+            System.out.println(day + " ");
+            for (LessonNumber lessonNumber: LessonNumber.values()) {
+                System.out.print(lessonNumber + " ");
+                System.out.println(lessonMap.get(new Position(day, lessonNumber)));
+            }
+        }
+    }
+
+    public Map<Position, Lesson> forGroup(Group group) {
+        Map<Position, Lesson> lessonMap = new HashMap<>();
+        schedule.forEach((position, cell) -> {
+            Lesson lesson = cell.getLessonForGroup(group);
+            lessonMap.put(position, lesson);
+        });
+        return lessonMap;
+    }
+
+    public Map<Position, Lesson> forDayByGroup(Day day, Group group) {
+        Map<Position, Lesson> lessonMap = new HashMap<>();
+        schedule.forEach((position, cell) -> {
+            if(position.getDay().equals(day)){
+                lessonMap.put(position, cell.getLessonForGroup(group) );
+            }
+        });
+        return lessonMap;
     }
 }
