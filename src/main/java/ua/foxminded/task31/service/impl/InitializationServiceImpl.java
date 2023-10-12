@@ -69,16 +69,15 @@ public class InitializationServiceImpl implements InitializationService {
 
             for (int i = 0; i < NUMBER_OF_LESSONS_PER_DAY; i++) {
 
-
                 //go day by day
                 for (Day day : Day.values()) {
+                    int attempts = 0;
 
-                    while (true) {
-                        //select one lesson
-                        System.out.println("infinite loop?");
+                    while (attempts < 10) {
                         if(lessonList.isEmpty()){
                             break;
                         }
+                        //select one lesson
                         int num = random.nextInt(lessonList.size());
                         Lesson lesson = lessonList.get(num);
 
@@ -103,6 +102,10 @@ public class InitializationServiceImpl implements InitializationService {
                         if (schedule.addLesson(lesson)) {
                             lessonList.remove(lesson);
                             break;
+                        }else {
+                            lesson.setDay(null);
+                            lesson.setLessonNumber(null);
+                            attempts++;
                         }
                     }
                 }
