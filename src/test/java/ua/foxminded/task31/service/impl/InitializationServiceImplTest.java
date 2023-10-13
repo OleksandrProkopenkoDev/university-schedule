@@ -31,8 +31,10 @@ class InitializationServiceImplTest {
         Schedule schedule = underTest.generateSchedule(universityDataDto);
         Group group = universityDataDto.getGroups().get(0);
         // Then
+        System.out.println("University schedule:");
         schedule.print();
 
+        System.out.println("\nschedule for "+group.getName()+":");
         Map<Position, Lesson> lessonMap = schedule.forGroup(group);
         schedule.printForGroup(lessonMap);
     }
