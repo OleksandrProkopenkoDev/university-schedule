@@ -2,9 +2,10 @@ package ua.foxminded.task31.service.impl;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ua.foxminded.task31.dto.UniversityDataDto;
+import ua.foxminded.task31.dataGeneration.impl.GenerationServiceImpl;
+import ua.foxminded.task31.model.dto.UniversityDataDto;
 import ua.foxminded.task31.entity.*;
-import ua.foxminded.task31.service.GenerationService;
+import ua.foxminded.task31.dataGeneration.GenerationService;
 import ua.foxminded.task31.service.InitializationService;
 
 import java.util.List;

@@ -27,4 +27,11 @@ public class Position {
     public int hashCode() {
         return Objects.hash(day, lessonNumber);
     }
+
+    @Override
+    public String toString() {
+        return "Position{" + day +
+                " - " + lessonNumber +
+                '}';
+    }
 }

@@ -1,11 +1,12 @@
-package ua.foxminded.task31.service.impl;
+package ua.foxminded.task31.dataGeneration.impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ua.foxminded.task31.dto.UniversityDataDto;
+import ua.foxminded.task31.model.dto.UniversityDataDto;
 import ua.foxminded.task31.entity.*;
 import ua.foxminded.task31.exception.GenerationException;
-import ua.foxminded.task31.service.GenerationService;
+import ua.foxminded.task31.dataGeneration.GenerationService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class GenerationServiceImpl implements GenerationService {

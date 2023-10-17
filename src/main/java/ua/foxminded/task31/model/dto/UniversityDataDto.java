@@ -1,4 +1,4 @@
-package ua.foxminded.task31.dto;
+package ua.foxminded.task31.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
