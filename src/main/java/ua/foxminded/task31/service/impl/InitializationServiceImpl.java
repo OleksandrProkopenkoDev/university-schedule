@@ -114,23 +114,10 @@ public class InitializationServiceImpl implements InitializationService {
                         if (daySchedule.get(currentPosition) != null) {
                             // lesson already exists on this position
                             log.trace("another lesson already exists on this position. Shifting the position...");
-                            shift(currentPosition);
-                            while (checkGap(daySchedule, currentPosition)) {
-                                shift(currentPosition);
-                                log.trace("currentPosition: "+currentPosition);
-                                log.trace("current schedule for this day : " + daySchedule);
-                            }
-                            log.trace("Position shifted. New position is [{}]. Updating position for current lesson...", currentPosition);
-                            lesson.setDay(currentPosition.getDay());
-                            lesson.setLessonNumber(currentPosition.getLessonNumber());
+                            shiftPositionWhileHasGap(currentPosition, daySchedule, lesson);
                         }
-                        if(checkGap(daySchedule, currentPosition)){
-                            do{
-                                shift(currentPosition);
-                            }while (checkGap(daySchedule, currentPosition));
-                            log.trace("Position shifted. New position is [{}]. Updating position for current lesson...", currentPosition);
-                            lesson.setDay(currentPosition.getDay());
-                            lesson.setLessonNumber(currentPosition.getLessonNumber());
+                        if (checkGap(daySchedule, currentPosition)) {
+                            shiftPositionWhileHasGap(currentPosition, daySchedule, lesson);
                         }
                         //try to add new lesson with setted time to schedule
                         log.trace("Try to add this lesson to global schedule");
@@ -147,35 +134,39 @@ public class InitializationServiceImpl implements InitializationService {
                     }
                 }
             }
-
         });
         log.info("Schedule successfully selected");
         return schedule;
     }
 
-    private boolean checkGap(Map<Position, Lesson> daySchedule, Position position) {
+    private void shiftPositionWhileHasGap(Position currentPosition, Map<Position, Lesson> daySchedule, Lesson lesson) {
+        do {
+            shift(currentPosition);
+        } while (checkGap(daySchedule, currentPosition));
+        log.trace("Position shifted. New position is [{}]. Updating position for current lesson...", currentPosition);
+        lesson.setDay(currentPosition.getDay());
+        lesson.setLessonNumber(currentPosition.getLessonNumber());
+    }
 
-        int[] positions = new int[NUMBER_OF_LESSONS_PER_DAY + 1];
-        positions[position.getLessonNumber().getValue()] = position.getLessonNumber().getValue();
+    private boolean checkGap(Map<Position, Lesson> daySchedule, Position position) {
+        int[] positions = new int[NUMBER_OF_LESSONS_PER_DAY];
+        positions[position.getLessonNumber().getValue() - 1] = position.getLessonNumber().getValue();
         daySchedule.forEach((pos, lesson) -> {
-            if(lesson != null) {
-                positions[pos.getLessonNumber().getValue()] = pos.getLessonNumber().getValue();
+            if (lesson != null) {
+                positions[pos.getLessonNumber().getValue() - 1] = pos.getLessonNumber().getValue();
             }
         });
-        log.trace(Arrays.toString(positions));
-        int min = Arrays.stream(positions).min().getAsInt();
+        log.trace("Checking gap in day schedule. " + Arrays.toString(positions));
         long lessonsThisDay = Arrays.stream(positions)
                 .filter(value -> value != 0)
                 .count();
         int count = 0;
-        for (int i = 1; i < NUMBER_OF_LESSONS_PER_DAY; i++) {
-
-                if (positions[i] + 1 == positions[i + 1]) {
-                    count++;
-                }
-
+        for (int i = 0; i < NUMBER_OF_LESSONS_PER_DAY - 1; i++) {
+            if (positions[i] + 1 == positions[i + 1]) {
+                count++;
+            }
         }
-        log.trace("count = "+count);
+        log.trace("count = " + count);
         return count < lessonsThisDay - 1;
     }
 
