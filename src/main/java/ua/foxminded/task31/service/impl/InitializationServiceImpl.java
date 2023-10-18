@@ -117,7 +117,17 @@ public class InitializationServiceImpl implements InitializationService {
                             shift(currentPosition);
                             while (checkGap(daySchedule, currentPosition)) {
                                 shift(currentPosition);
+                                log.trace("currentPosition: "+currentPosition);
+                                log.trace("current schedule for this day : " + daySchedule);
                             }
+                            log.trace("Position shifted. New position is [{}]. Updating position for current lesson...", currentPosition);
+                            lesson.setDay(currentPosition.getDay());
+                            lesson.setLessonNumber(currentPosition.getLessonNumber());
+                        }
+                        if(checkGap(daySchedule, currentPosition)){
+                            do{
+                                shift(currentPosition);
+                            }while (checkGap(daySchedule, currentPosition));
                             log.trace("Position shifted. New position is [{}]. Updating position for current lesson...", currentPosition);
                             lesson.setDay(currentPosition.getDay());
                             lesson.setLessonNumber(currentPosition.getLessonNumber());
@@ -126,7 +136,7 @@ public class InitializationServiceImpl implements InitializationService {
                         log.trace("Try to add this lesson to global schedule");
                         if (schedule.addLesson(lesson)) {
                             log.trace("Lesson successfully added to global schedule!");
-                            lessonList.remove(lesson);
+                            lessonList.remove(attempt);
                             break;
                         } else {
                             log.trace("Lesson not added. Retry.");
@@ -144,24 +154,29 @@ public class InitializationServiceImpl implements InitializationService {
     }
 
     private boolean checkGap(Map<Position, Lesson> daySchedule, Position position) {
+
         int[] positions = new int[NUMBER_OF_LESSONS_PER_DAY + 1];
         positions[position.getLessonNumber().getValue()] = position.getLessonNumber().getValue();
         daySchedule.forEach((pos, lesson) -> {
-            positions[pos.getLessonNumber().getValue()] = pos.getLessonNumber().getValue();
+            if(lesson != null) {
+                positions[pos.getLessonNumber().getValue()] = pos.getLessonNumber().getValue();
+            }
         });
+        log.trace(Arrays.toString(positions));
         int min = Arrays.stream(positions).min().getAsInt();
         long lessonsThisDay = Arrays.stream(positions)
                 .filter(value -> value != 0)
                 .count();
         int count = 0;
-        for (int i = 0; i < lessonsThisDay - 1; i++) {
-            if (i == min) {
-                if (positions[i] == positions[i] + 1) {
+        for (int i = 1; i < NUMBER_OF_LESSONS_PER_DAY; i++) {
+
+                if (positions[i] + 1 == positions[i + 1]) {
                     count++;
                 }
-            }
+
         }
-        return count == lessonsThisDay - 1;
+        log.trace("count = "+count);
+        return count < lessonsThisDay - 1;
     }
 
     private void shift(Position position) {
