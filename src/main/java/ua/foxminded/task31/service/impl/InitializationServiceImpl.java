@@ -1,5 +1,6 @@
 package ua.foxminded.task31.service.impl;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import ua.foxminded.task31.model.Schedule;
 import ua.foxminded.task31.model.dto.UniversityDataDto;
 import ua.foxminded.task31.model.enums.Day;
 import ua.foxminded.task31.model.enums.LessonNumber;
+import ua.foxminded.task31.repository.*;
 import ua.foxminded.task31.service.InitializationService;
 
 import java.util.Arrays;
@@ -34,6 +36,23 @@ public class InitializationServiceImpl implements InitializationService {
     private final Random random = new Random();
 
     private final GenerationService generationService;
+
+    private final AdminRepository adminRepository;
+
+    private final ClassroomRepository classroomRepository;
+
+    private final CourseRepository courseRepository;
+
+    private final GroupRepository groupRepository;
+
+    private final LessonRepository lessonRepository;
+
+    private final StudentRepository studentRepository;
+
+    private final TeacherRepository teacherRepository;
+
+
+
 
     @Override
     public UniversityDataDto generateInitialData() {
@@ -139,6 +158,33 @@ public class InitializationServiceImpl implements InitializationService {
         return schedule;
     }
 
+    @Transactional
+    @Override
+    public void fillDbWithGeneratedData(UniversityDataDto universityDataDto, Schedule globalSchedule) {
+        adminRepository.saveAll(universityDataDto.getAdmins());
+        log.debug("Saved {} Admins to database.", universityDataDto.getAdmins().size());
+
+        courseRepository.saveAll(universityDataDto.getCourses());
+        log.debug("saved {} Courses to database", universityDataDto.getCourses().size());
+
+        classroomRepository.saveAll(universityDataDto.getClassrooms());
+        log.debug("Saved {} Classrooms to database", universityDataDto.getClassrooms().size());
+
+        teacherRepository.saveAll(universityDataDto.getTeachers());
+        log.debug("Saved {} Teachers to database", universityDataDto.getTeachers().size());
+
+        groupRepository.saveAll(universityDataDto.getGroups());
+        log.debug("Saved {} Groups to database", universityDataDto.getGroups());
+
+        studentRepository.saveAll(universityDataDto.getStudents());
+        log.debug("Saved {} Students to database", universityDataDto.getStudents());
+
+        lessonRepository.saveAll(globalSchedule.getAllLessons());
+        log.debug("Saved {} Lessons to database", globalSchedule.getAllLessons().size());
+
+        log.info("University data and schedule are saved to database.");
+    }
+
     private void shiftPositionWhileHasGap(Position currentPosition, Map<Position, Lesson> daySchedule, Lesson lesson) {
         do {
             shift(currentPosition);
@@ -180,8 +226,5 @@ public class InitializationServiceImpl implements InitializationService {
         position.setLessonNumber(LessonNumber.fromValue(value));
     }
 
-    @Override
-    public void fillDbWithGeneratedData() {
 
-    }
 }

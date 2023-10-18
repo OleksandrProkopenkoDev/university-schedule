@@ -10,6 +10,7 @@ import ua.foxminded.task31.entity.Lesson;
 import ua.foxminded.task31.model.Position;
 import ua.foxminded.task31.model.Schedule;
 import ua.foxminded.task31.model.dto.UniversityDataDto;
+import ua.foxminded.task31.repository.LessonRepository;
 
 import java.util.Map;
 
@@ -19,19 +20,31 @@ import java.util.Map;
 public class StartApp implements ApplicationRunner {
 
     private InitializationService initializationService;
+    private LessonRepository lessonRepository;
 
     @Override
     public void run(ApplicationArguments args) {
         log.info("Starting app data initialization...");
-        UniversityDataDto universityDataDto = initializationService.generateInitialData();
-        Schedule schedule = initializationService.generateSchedule(universityDataDto);
+        if (isDataExist()) {
+            log.info("App initialization finished.");
+        } else {
+            UniversityDataDto universityDataDto = initializationService.generateInitialData();
+            Schedule schedule = initializationService.generateSchedule(universityDataDto);
+            initializationService.fillDbWithGeneratedData(universityDataDto, schedule);
+            log.info("App initialization finished.");
 
-        Group group = universityDataDto.getGroups().get(0);
-        System.out.println("University schedule:");
-        schedule.print();
+            //demo output:
+            Group group = universityDataDto.getGroups().get(0);
+            System.out.println("University schedule:");
+            schedule.print();
 
-        System.out.println("\nschedule for "+group.getName()+":");
-        Map<Position, Lesson> lessonMap = schedule.forGroup(group);
-        schedule.printForGroup(lessonMap);
+            System.out.println("\nschedule for " + group.getName() + ":");
+            Map<Position, Lesson> lessonMap = schedule.forGroup(group);
+            schedule.printForGroup(lessonMap);
+        }
+    }
+
+    private boolean isDataExist() {
+        return lessonRepository.count() != 0;
     }
 }

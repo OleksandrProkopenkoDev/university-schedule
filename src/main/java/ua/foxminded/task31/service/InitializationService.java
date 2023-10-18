@@ -10,6 +10,6 @@ public interface InitializationService {
 
     Schedule generateSchedule(UniversityDataDto universityDataDto);
 
-    void fillDbWithGeneratedData();
+    void fillDbWithGeneratedData(UniversityDataDto universityDataDto, Schedule globalSchedule);
 
 }

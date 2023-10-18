@@ -6,8 +6,10 @@ import ua.foxminded.task31.entity.Lesson;
 import ua.foxminded.task31.model.enums.Day;
 import ua.foxminded.task31.model.enums.LessonNumber;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 @Getter
 public class Schedule {
@@ -68,5 +70,17 @@ public class Schedule {
             }
         });
         return lessonMap;
+    }
+
+    public List<Lesson> getAllLessons() {
+        List<Lesson> lessons = new ArrayList<>();
+        for (Day day: Day.values()) {
+            for (LessonNumber lessonNumber: LessonNumber.values()) {
+                Position position = new Position(day, lessonNumber);
+                Cell cell = schedule.get(position);
+                lessons.addAll(cell.getLessons());
+            }
+        }
+        return lessons;
     }
 }
