@@ -1,8 +1,8 @@
 package ua.foxminded.task31.model;
 
 import lombok.Getter;
-import ua.foxminded.task31.entity.Group;
-import ua.foxminded.task31.entity.Lesson;
+import ua.foxminded.task31.model.entity.Group;
+import ua.foxminded.task31.model.entity.Lesson;
 import ua.foxminded.task31.model.enums.Day;
 import ua.foxminded.task31.model.enums.LessonNumber;
 

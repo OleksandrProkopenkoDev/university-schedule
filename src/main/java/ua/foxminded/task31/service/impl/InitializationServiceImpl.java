@@ -9,6 +9,7 @@ import ua.foxminded.task31.entity.*;
 import ua.foxminded.task31.model.Position;
 import ua.foxminded.task31.model.Schedule;
 import ua.foxminded.task31.model.dto.UniversityDataDto;
+import ua.foxminded.task31.model.entity.*;
 import ua.foxminded.task31.model.enums.Day;
 import ua.foxminded.task31.model.enums.LessonNumber;
 import ua.foxminded.task31.repository.*;

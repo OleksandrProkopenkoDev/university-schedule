@@ -7,6 +7,7 @@ import ua.foxminded.task31.model.dto.UniversityDataDto;
 import ua.foxminded.task31.entity.*;
 import ua.foxminded.task31.exception.GenerationException;
 import ua.foxminded.task31.dataGeneration.GenerationService;
+import ua.foxminded.task31.model.entity.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;

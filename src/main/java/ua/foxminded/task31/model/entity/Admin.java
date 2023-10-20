@@ -1,4 +1,4 @@
-package ua.foxminded.task31.entity;
+package ua.foxminded.task31.model.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

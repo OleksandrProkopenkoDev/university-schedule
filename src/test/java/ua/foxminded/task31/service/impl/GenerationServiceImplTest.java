@@ -6,6 +6,7 @@ import ua.foxminded.task31.dataGeneration.impl.GenerationServiceImpl;
 import ua.foxminded.task31.model.dto.UniversityDataDto;
 import ua.foxminded.task31.entity.*;
 import ua.foxminded.task31.dataGeneration.GenerationService;
+import ua.foxminded.task31.model.entity.*;
 import ua.foxminded.task31.service.InitializationService;
 
 import java.util.List;

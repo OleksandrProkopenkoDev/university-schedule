@@ -1,7 +1,7 @@
 package ua.foxminded.task31.model;
 
-import ua.foxminded.task31.entity.Group;
-import ua.foxminded.task31.entity.Lesson;
+import ua.foxminded.task31.model.entity.Group;
+import ua.foxminded.task31.model.entity.Lesson;
 import ua.foxminded.task31.exception.ScheduleException;
 
 import java.util.ArrayList;
