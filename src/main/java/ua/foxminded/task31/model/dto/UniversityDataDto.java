@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ua.foxminded.task31.entity.*;
 import ua.foxminded.task31.model.entity.*;
 
 import java.util.List;

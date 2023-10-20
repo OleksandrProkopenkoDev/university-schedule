@@ -1,7 +1,7 @@
 package ua.foxminded.task31.dataGeneration;
 
 import ua.foxminded.task31.model.dto.UniversityDataDto;
-import ua.foxminded.task31.entity.*;
+import ua.foxminded.task31.model.entity.*;
 import ua.foxminded.task31.model.entity.*;
 
 import java.util.List;

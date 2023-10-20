@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ua.foxminded.task31.model.dto.UniversityDataDto;
-import ua.foxminded.task31.entity.*;
 import ua.foxminded.task31.exception.GenerationException;
 import ua.foxminded.task31.dataGeneration.GenerationService;
 import ua.foxminded.task31.model.entity.*;

@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ua.foxminded.task31.dataGeneration.GenerationService;
-import ua.foxminded.task31.entity.*;
 import ua.foxminded.task31.model.Position;
 import ua.foxminded.task31.model.Schedule;
 import ua.foxminded.task31.model.dto.UniversityDataDto;

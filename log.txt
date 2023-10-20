@@ -1347,3 +1347,39 @@ Need more flexibility with validation rules? Learn more: https://rd.gt/3AbJUZE
 2023-10-20T10:23:36.951+03:00  INFO 18976 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-10-20T10:23:36.954+03:00  INFO 18976 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2023-10-20T10:23:36.975+03:00  INFO 18976 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-10-20T10:49:38.957+03:00  INFO 11300 --- [main] u.f.task31.UniversityApplication         : Starting UniversityApplication using Java 20.0.1 with PID 11300 (E:\JavaProjects\FoxmindedCourse\task3.1.university\target\classes started by proko in E:\JavaProjects\FoxmindedCourse\task3.1.university)
+2023-10-20T10:49:38.959+03:00  INFO 11300 --- [main] u.f.task31.UniversityApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-10-20T10:49:39.796+03:00  INFO 11300 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-20T10:49:39.887+03:00  INFO 11300 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 82 ms. Found 7 JPA repository interfaces.
+2023-10-20T10:49:40.487+03:00  INFO 11300 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-10-20T10:49:40.499+03:00  INFO 11300 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-20T10:49:40.499+03:00  INFO 11300 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-10-20T10:49:40.606+03:00  INFO 11300 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-20T10:49:40.606+03:00  INFO 11300 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1592 ms
+2023-10-20T10:49:40.781+03:00  INFO 11300 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.16.3 by Redgate
+2023-10-20T10:49:40.782+03:00  INFO 11300 --- [main] o.f.c.internal.license.VersionPrinter    : See release notes here: https://rd.gt/416ObMi
+2023-10-20T10:49:40.782+03:00  INFO 11300 --- [main] o.f.c.internal.license.VersionPrinter    : 
+2023-10-20T10:49:40.792+03:00  INFO 11300 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-10-20T10:49:40.980+03:00  INFO 11300 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6909f6be
+2023-10-20T10:49:40.981+03:00  INFO 11300 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-10-20T10:49:41.000+03:00  INFO 11300 --- [main] o.f.c.i.database.base.BaseDatabaseType   : Database: jdbc:postgresql://localhost:5432/university (PostgreSQL 15.2)
+2023-10-20T10:49:41.053+03:00  INFO 11300 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.029s)
+2023-10-20T10:49:41.141+03:00  INFO 11300 --- [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2023-10-20T10:49:41.142+03:00  INFO 11300 --- [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2023-10-20T10:49:41.232+03:00  INFO 11300 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-20T10:49:41.313+03:00  INFO 11300 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.9.Final
+2023-10-20T10:49:41.315+03:00  INFO 11300 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-10-20T10:49:41.497+03:00  INFO 11300 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-20T10:49:41.655+03:00  INFO 11300 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-20T10:49:41.998+03:00  INFO 11300 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-20T10:49:42.789+03:00  INFO 11300 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-20T10:49:42.834+03:00  INFO 11300 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-20T10:49:43.216+03:00  WARN 11300 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-20T10:49:43.460+03:00  WARN 11300 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2023-10-20T10:49:43.571+03:00  INFO 11300 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-20T10:49:43.578+03:00  INFO 11300 --- [main] u.f.task31.UniversityApplication         : Started UniversityApplication in 5.114 seconds (process running for 5.809)
+2023-10-20T10:49:43.580+03:00  INFO 11300 --- [main] ua.foxminded.task31.service.StartApp     : Starting app data initialization...
+2023-10-20T10:49:43.871+03:00  INFO 11300 --- [main] ua.foxminded.task31.service.StartApp     : App initialization finished.
+2023-10-20T10:49:46.510+03:00  INFO 11300 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-20T10:49:46.513+03:00  INFO 11300 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-10-20T10:49:46.533+03:00  INFO 11300 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
