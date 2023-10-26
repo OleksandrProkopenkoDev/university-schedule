@@ -1,4 +1,4 @@
-package ua.foxminded.task31.dataGeneration.controller;
+package ua.foxminded.task31.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
