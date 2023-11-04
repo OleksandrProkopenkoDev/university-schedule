@@ -1,5 +1,6 @@
 package ua.foxminded.task31.model;
 
+import lombok.Getter;
 import ua.foxminded.task31.model.entity.Group;
 import ua.foxminded.task31.model.entity.Lesson;
 import ua.foxminded.task31.exception.ScheduleException;
@@ -8,7 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Getter
 public class Cell {
+
     private final List<Lesson> lessons = new ArrayList<>();
 
     public boolean addLesson(Lesson lesson) {
@@ -25,10 +28,6 @@ public class Cell {
         return lessons.remove(lesson);
     }
 
-    public List<Lesson> getLessons() {
-        return lessons;
-    }
-
 
     public Lesson getLessonForGroup(Group group) {
         List<Lesson> lessonList = lessons.stream()
@@ -43,10 +42,16 @@ public class Cell {
         }
     }
 
+    public void addLessons(List<Lesson> lessonList) {
+        lessons.addAll(lessonList);
+    }
+
     @Override
     public String toString() {
         return "Cell{" +
                 "lessons=" + lessons +
                 '}';
     }
+
+
 }

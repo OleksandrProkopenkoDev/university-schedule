@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 public class Schedule {
@@ -21,6 +22,20 @@ public class Schedule {
             for (LessonNumber lessonNumber: LessonNumber.values()) {
                 Position position = new Position(day, lessonNumber);
                 Cell cell = new Cell();
+                schedule.put(position, cell);
+            }
+        }
+    }
+
+    public Schedule(List<Lesson> lessons) {
+        for (Day day: Day.values()) {
+            for (LessonNumber lessonNumber: LessonNumber.values()) {
+                Position position = new Position(day, lessonNumber);
+                Cell cell = new Cell();
+                List<Lesson> lessonList = lessons.stream()
+                        .filter(lesson -> lesson.getDay().equals(day) && lesson.getLessonNumber().equals(lessonNumber))
+                        .collect(Collectors.toList());
+                cell.addLessons(lessonList);
                 schedule.put(position, cell);
             }
         }
@@ -82,5 +97,9 @@ public class Schedule {
             }
         }
         return lessons;
+    }
+
+    public Cell getCell(Day day, LessonNumber lessonNumber){
+        return schedule.get(new Position(day, lessonNumber));
     }
 }

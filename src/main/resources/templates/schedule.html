@@ -1,5 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+    .hr-blurry {
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+        width: 100%;
+    }
+
+    .bottom-line {
+        margin-top: auto;
+    }
+
+    /* Add space between rows */
+    tr.add-space {
+        margin-bottom: 40px; /* Adjust the value as needed */
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <title>Users</title>
@@ -14,7 +31,40 @@
 <div class="d-flex">
     <div th:replace="~{fragments/side-panel :: aside}"></div>
     <div class="container shadow mb-5 bg-body rounded" style="margin-top: 30px; margin-left: 50px;">
-        <h2>Schedule goes here</h2>
+        <h2>Schedule</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Lesson</th>
+                <th th:each="day : ${days}" th:text="${day}">
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="lessonNumber : ${lessonNumbers}"
+                class="add-space">
+                <td th:text="${lessonNumber}"></td>
+                <td th:each="day : ${days}">
+                    <!-- Replace 'yourData' with the actual attribute names from your model -->
+
+                    <div
+                            th:with="cell=${universitySchedule.getCell(day, lessonNumber)}">
+                        <div th:each="lesson : ${cell.lessons}"
+                             class="shadow rounded">
+                            <span th:text="${lesson.course.name}"></span><br/>
+                            <span th:text="${lesson.group.name}"></span><br/>
+                            <span th:text="${lesson.classroom.number}"></span>
+                        </div>
+                    </div>
+                </td>
+                <!-- Horizontal line separator within the loop -->
+                <td>
+                    <div class="hr" style="margin-top: auto;"></div>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
     </div>
 
 </div>

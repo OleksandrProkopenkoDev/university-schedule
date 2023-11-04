@@ -4,11 +4,15 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import ua.foxminded.task31.model.Schedule;
 import ua.foxminded.task31.model.entity.Course;
 import ua.foxminded.task31.model.entity.Group;
 import ua.foxminded.task31.model.entity.UserEntity;
+import ua.foxminded.task31.model.enums.Day;
+import ua.foxminded.task31.model.enums.LessonNumber;
 import ua.foxminded.task31.service.CourseService;
 import ua.foxminded.task31.service.GroupService;
+import ua.foxminded.task31.service.ScheduleService;
 import ua.foxminded.task31.service.UserService;
 
 import java.util.List;
@@ -20,10 +24,14 @@ public class DataController {
     private final UserService userService;
     private final CourseService courseService;
     private final GroupService groupService;
+    private final ScheduleService scheduleService;
 
     @GetMapping("/schedule")
     public String showSchedule(Model model){
-
+        Schedule universitySchedule = scheduleService.getUniversitySchedule();
+        model.addAttribute("universitySchedule", universitySchedule);
+        model.addAttribute("days", Day.values());
+        model.addAttribute("lessonNumbers", LessonNumber.values());
         return "schedule";
     }
 
