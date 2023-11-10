@@ -51,6 +51,8 @@ public class InitializationServiceImpl implements InitializationService {
 
     private final TeacherRepository teacherRepository;
 
+
+
     @Override
     public UniversityDataDto generateInitialData() {
         List<Admin> admins = generationService.generateAdmins(ADMINS_AMOUNT);

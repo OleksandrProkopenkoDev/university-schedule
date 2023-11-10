@@ -5,5 +5,6 @@ import ua.foxminded.task31.model.entity.Group;
 import java.util.List;
 
 public interface GroupService {
-    List<Group> getAllGroups();
+    List<Group> findAllGroups();
+
 }

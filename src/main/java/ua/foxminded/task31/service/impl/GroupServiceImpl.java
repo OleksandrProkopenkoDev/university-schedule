@@ -15,7 +15,7 @@ public class GroupServiceImpl implements GroupService {
     private final GroupRepository groupRepository;
 
     @Override
-    public List<Group> getAllGroups() {
+    public List<Group> findAllGroups() {
         return groupRepository.findAll();
     }
 }

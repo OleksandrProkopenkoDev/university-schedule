@@ -5,6 +5,6 @@ import ua.foxminded.task31.model.entity.Course;
 import java.util.List;
 
 public interface CourseService {
-    List<Course> getAllCourses();
+    List<Course> findAllCourses();
 
 }

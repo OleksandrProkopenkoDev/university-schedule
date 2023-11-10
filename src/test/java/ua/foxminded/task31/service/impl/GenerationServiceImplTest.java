@@ -2,9 +2,12 @@ package ua.foxminded.task31.service.impl;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import ua.foxminded.task31.dataGeneration.impl.GenerationServiceImpl;
 import ua.foxminded.task31.model.dto.UniversityDataDto;
-import ua.foxminded.task31.entity.*;
 import ua.foxminded.task31.dataGeneration.GenerationService;
 import ua.foxminded.task31.model.entity.*;
 import ua.foxminded.task31.service.InitializationService;
@@ -14,16 +17,14 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@SpringBootTest
 class GenerationServiceImplTest {
 
+    @Autowired
     private GenerationService underTest;
+    @Autowired
     private InitializationService initializationService;
 
-    @BeforeEach
-    void setUp() {
-        underTest = new GenerationServiceImpl();
-        initializationService = new InitializationServiceImpl(underTest);
-    }
 
     @Test
     void _shouldGenerateStudents() {

@@ -32,6 +32,69 @@
     <div th:replace="~{fragments/side-panel :: aside}"></div>
     <div class="container shadow mb-5 bg-body rounded" style="margin-top: 30px; margin-left: 50px;">
         <h2>Schedule</h2>
+        <div>
+            <span>
+                Filters:
+            </span>
+            <div>
+                <label>
+                    <span>Group</span>
+                    <select th:field="*{currentGroup}"
+                            id="groupSelect">
+                        <option value="">All</option>
+                        <option th:each="group : ${groups}"
+                                th:value="${group.id}"
+                                th:text="${group.name}">
+                        </option>
+                    </select>
+                </label>
+                <label>
+                    <span>Course</span>
+                    <select th:field="*{currentCourse}"
+                            id="courseSelect">
+                        <option value="">All</option>
+                        <option th:each="course : ${courses}"
+                                th:value="${course.id}"
+                                th:text="${course.name}">
+                        </option>
+                    </select>
+                </label>
+                <label>
+                    <span>Teacher</span>
+                    <select th:field="*{currentTeacher}"
+                    id="teacherSelect"
+                    >
+                        <option value="">All</option>
+                        <option th:each="teacher : ${teachers}"
+                                th:value="${teacher.id}"
+                                th:text="${teacher.firstName +' '+ teacher.lastName}"
+                                th:selected="${currentTeacher}">
+                        </option>
+                    </select>
+                </label>
+
+            </div>
+            <span>
+                Checkboxes:
+            </span>
+
+            <div>
+                <label>Group
+                    <input type="checkbox" th:checked="${showGroup}"/>
+                </label>
+                <label>Classroom
+                    <input type="checkbox" th:checked="${showClassroom}"/>
+                </label>
+                <label>Course
+                    <input type="checkbox" th:checked="${showCourse}"/>
+                </label>
+                <label>Teacher
+                    <input type="checkbox" th:checked="${showTeacher}"/>
+                </label>
+            </div>
+
+
+        </div>
         <table>
             <thead>
             <tr>
@@ -45,12 +108,10 @@
                 class="add-space">
                 <td th:text="${lessonNumber}"></td>
                 <td th:each="day : ${days}">
-                    <!-- Replace 'yourData' with the actual attribute names from your model -->
-
                     <div
                             th:with="cell=${universitySchedule.getCell(day, lessonNumber)}">
                         <div th:each="lesson : ${cell.lessons}"
-                             class="shadow rounded">
+                             class="shadow rounded" style="padding: 5px;">
                             <span th:text="${lesson.course.name}"></span><br/>
                             <span th:text="${lesson.group.name}"></span><br/>
                             <span th:text="${lesson.classroom.number}"></span>
@@ -68,5 +129,40 @@
     </div>
 
 </div>
+<script th:inline="javascript">
+    function generateUrl(urlParams) {
+        let str = "";
+        urlParams.forEach((value, key) => {
+            str = str + key + "=" + value + "&";
+        })
+        if (str !== "") {
+           str= str.substring(0, str.length - 1);
+        }
+        return 'schedule?' + str;
+    }
+
+    document.getElementById("groupSelect").onchange = function () {
+        const groupId = this.value;
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set("groupId", groupId);
+        window.location.href = generateUrl(urlParams);
+    }
+
+    document.getElementById("courseSelect").onchange = function () {
+        const courseId = this.value;
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set("courseId", courseId);
+        window.location.href = generateUrl(urlParams);
+    }
+
+    document.getElementById("teacherSelect").onchange = function () {
+        const teacherId = this.value;
+
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set("teacherId", teacherId);
+        window.location.href = generateUrl(urlParams);
+    }
+
+</script>
 </body>
 </html>
