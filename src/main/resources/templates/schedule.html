@@ -82,16 +82,34 @@
 
             <div>
                 <label>Group
-                    <input type="checkbox" th:checked="${showGroup}"/>
+                    <input
+                            type="checkbox"
+                            id="showGroupCheck"
+                            th:checked="${showGroup}"
+                            onclick="handleCheckboxClick('showGroupCheck')"
+                    />
                 </label>
                 <label>Classroom
-                    <input type="checkbox" th:checked="${showClassroom}"/>
+                    <input
+                            type="checkbox"
+                            id="showClassroomCheck"
+                            th:checked="${showClassroom}"
+                            onclick="handleCheckboxClick('showClassroomCheck')"
+                    />
                 </label>
                 <label>Course
-                    <input type="checkbox" th:checked="${showCourse}"/>
+                    <input
+                            type="checkbox"
+                            id="showCourseCheck"
+                            onclick="handleCheckboxClick('showCourseCheck')"
+                    />
                 </label>
                 <label>Teacher
-                    <input type="checkbox" th:checked="${showTeacher}"/>
+                    <input
+                            type="checkbox"
+                            id="showTeacherCheck"
+                            onclick="handleCheckboxClick('showTeacherCheck')"
+                    />
                 </label>
             </div>
 
@@ -114,10 +132,19 @@
                             th:with="cell=${universitySchedule.getCell(day, lessonNumber)}">
                         <div th:each="lesson : ${cell.lessons}"
                              class="shadow rounded" style="padding: 5px;">
-                            <span th:text="${lesson.course.name}"></span><br/>
-                            <span th:text="${lesson.group.name}"></span><br/>
-                            <span th:text="${lesson.classroom.number}"></span><br/>
-                            <span th:text="${lesson.teacher.firstName+' '+ lesson.teacher.lastName}"></span>
+                            <span
+
+                                    th:text="${lesson.course.name}"></span><br/>
+                            <span
+
+                                    th:text="${lesson.group.name}"></span><br/>
+                            <span
+
+                                    th:text="${lesson.classroom.number}"></span><br/>
+                            <span
+                                    id="teacherDetails"
+                                    th:if=""
+                                    th:text="${lesson.teacher.firstName + ' ' + lesson.teacher.lastName}"></span>
                         </div>
                     </div>
                 </td>
@@ -150,6 +177,44 @@
         }
         return 'schedule' + str;
     }
+
+    // Retrieve and set the initial state of checkboxes from local storage
+    document.getElementById('showCourseCheck').checked = localStorage.getItem('showCourseCheck') === 'true';
+    document.getElementById('showGroupCheck').checked = localStorage.getItem('showGroupCheck') === 'true';
+    document.getElementById('showClassroomCheck').checked = localStorage.getItem('showClassroomCheck') === 'true';
+    document.getElementById('showTeacherCheck').checked = localStorage.getItem('showTeacherCheck') === 'true';
+
+    // Function to handle checkbox click event
+    function handleCheckboxClick(checkboxId) {
+        // Toggle the Thymeleaf condition based on the checkbox state
+        const checkbox = document.getElementById(checkboxId);
+        console.log(checkbox.id);
+        const teacherDetails = document.getElementById('teacherDetails');
+
+        if (checkbox.checked) {
+            teacherDetails.style.display = 'inline'; // Show the element
+        } else {
+            teacherDetails.style.display = 'none'; // Hide the element
+        }
+/*        // Toggle the visibility of the element based on the checkbox state
+        const checkbox = document.getElementById(checkboxId);
+        const teacherDetails = document.getElementById('teacherDetails');
+
+        if (checkbox.checked) {
+            teacherDetails.style.display = 'inline'; // Show the element
+        } else {
+            teacherDetails.style.display = 'none'; // Hide the element
+        }*/
+
+
+        // Save the checkbox state to local storage
+        localStorage.setItem(checkboxId, document.getElementById(checkboxId).checked);
+        console.log("reloading...")
+        // Reload the page
+        // location.reload();
+    }
+
+
 
     document.getElementById("groupSelect").onchange = function () {
         const groupId = this.value;

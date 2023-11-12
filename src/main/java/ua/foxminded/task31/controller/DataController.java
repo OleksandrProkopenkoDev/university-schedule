@@ -43,7 +43,6 @@ public class DataController {
 
         Schedule universitySchedule = scheduleService
                 .getScheduleByTeacherAndCourseAndGroup(currentTeacher, currentCourse, currentGroup);
-        boolean showGroup = true, showClassroom = true, showCourse = true, showTeacher = true;
         model.addAttribute("teacherId", params.get("teacherId"));
         model.addAttribute("courseId", params.get("courseId"));
         model.addAttribute("groupId", params.get("groupId"));
@@ -56,10 +55,6 @@ public class DataController {
         model.addAttribute("currentGroup", currentGroup);
         model.addAttribute("currentCourse", currentCourse);
         model.addAttribute("currentTeacher", currentTeacher);
-        model.addAttribute("showGroup", showGroup);
-        model.addAttribute("showClassroom", showClassroom);
-        model.addAttribute("showCourse", showCourse);
-        model.addAttribute("showTeacher", showTeacher);
         return "schedule";
     }
 
