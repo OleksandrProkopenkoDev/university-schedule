@@ -12,4 +12,18 @@ public interface LessonRepository extends JpaRepository<Lesson, Long> {
     List<Lesson> findAllByTeacher(Teacher teacher);
 
     List<Lesson> findAllByTeacherAndCourseAndGroup(Teacher teacher, Course course, Group group);
+
+    List<Lesson> findByGroupAndTeacherAndCourse(Group group, Teacher teacher, Course course);
+
+    List<Lesson> findByGroupAndTeacher(Group group, Teacher teacher);
+
+    List<Lesson> findByGroupAndCourse(Group group, Course course);
+
+    List<Lesson> findByTeacherAndCourse(Teacher teacher, Course course);
+
+    List<Lesson> findByGroup(Group group);
+
+    List<Lesson> findByTeacher(Teacher teacher);
+
+    List<Lesson> findByCourse(Course course);
 }

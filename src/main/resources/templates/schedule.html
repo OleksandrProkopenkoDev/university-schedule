@@ -39,36 +39,38 @@
             <div>
                 <label>
                     <span>Group</span>
-                    <select th:field="*{currentGroup}"
+                    <select
                             id="groupSelect">
                         <option value="">All</option>
                         <option th:each="group : ${groups}"
                                 th:value="${group.id}"
-                                th:text="${group.name}">
+                                th:text="${group.name}"
+                                th:selected="${group.id == currentGroup.id}">
                         </option>
                     </select>
                 </label>
                 <label>
                     <span>Course</span>
-                    <select th:field="*{currentCourse}"
+                    <select
                             id="courseSelect">
                         <option value="">All</option>
                         <option th:each="course : ${courses}"
                                 th:value="${course.id}"
-                                th:text="${course.name}">
+                                th:text="${course.name}"
+                                th:selected="${course.id == currentCourse.id}">
                         </option>
                     </select>
                 </label>
                 <label>
                     <span>Teacher</span>
-                    <select th:field="*{currentTeacher}"
-                    id="teacherSelect"
+                    <select
+                            id="teacherSelect"
                     >
                         <option value="">All</option>
                         <option th:each="teacher : ${teachers}"
                                 th:value="${teacher.id}"
                                 th:text="${teacher.firstName +' '+ teacher.lastName}"
-                                th:selected="${currentTeacher}">
+                                th:selected="${teacher.id == currentTeacher.id}">
                         </option>
                     </select>
                 </label>
@@ -98,7 +100,7 @@
         <table>
             <thead>
             <tr>
-                <th>Lesson</th>
+                <th></th>
                 <th th:each="day : ${days}" th:text="${day}">
                 </th>
             </tr>
@@ -114,7 +116,8 @@
                              class="shadow rounded" style="padding: 5px;">
                             <span th:text="${lesson.course.name}"></span><br/>
                             <span th:text="${lesson.group.name}"></span><br/>
-                            <span th:text="${lesson.classroom.number}"></span>
+                            <span th:text="${lesson.classroom.number}"></span><br/>
+                            <span th:text="${lesson.teacher.firstName+' '+ lesson.teacher.lastName}"></span>
                         </div>
                     </div>
                 </td>
@@ -132,13 +135,20 @@
 <script th:inline="javascript">
     function generateUrl(urlParams) {
         let str = "";
+
         urlParams.forEach((value, key) => {
-            str = str + key + "=" + value + "&";
+            if (value === "") {
+                urlParams.delete(key);
+                console.log(urlParams);
+            } else {
+                str = str + key + "=" + value + "&";
+
+            }
         })
         if (str !== "") {
-           str= str.substring(0, str.length - 1);
+            str = '?' + str.substring(0, str.length - 1);
         }
-        return 'schedule?' + str;
+        return 'schedule' + str;
     }
 
     document.getElementById("groupSelect").onchange = function () {

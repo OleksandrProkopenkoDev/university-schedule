@@ -11,6 +11,7 @@ import ua.foxminded.task31.model.entity.Teacher;
 import ua.foxminded.task31.repository.LessonRepository;
 import ua.foxminded.task31.service.ScheduleService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -32,18 +33,25 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    @Transactional
     public Schedule getScheduleByTeacherAndCourseAndGroup(Teacher teacher, Course course, Group group) {
-        if(teacher.getId() == null){
-            teacher = null;
+        List<Lesson> lessons;
+        if (group.getId() != null && teacher.getId() != null && course.getId() != null) {
+            lessons = lessonRepository.findByGroupAndTeacherAndCourse(group, teacher, course);
+        } else if (group.getId() != null && teacher.getId() != null) {
+            lessons = lessonRepository.findByGroupAndTeacher(group, teacher);
+        } else if (group.getId() != null && course.getId() != null) {
+            lessons = lessonRepository.findByGroupAndCourse(group, course);
+        } else if (teacher.getId() != null && course.getId() != null) {
+            lessons = lessonRepository.findByTeacherAndCourse(teacher, course);
+        } else if (group.getId() != null) {
+            lessons = lessonRepository.findByGroup(group);
+        } else if (teacher.getId() != null) {
+            lessons = lessonRepository.findByTeacher(teacher);
+        } else if (course.getId() != null) {
+            lessons = lessonRepository.findByCourse(course);
+        } else {
+            lessons = lessonRepository.findAll();
         }
-        if(course.getId() == null){
-            course = null;
-        }
-        if(group.getId() == null){
-            group = null;
-        }
-        List<Lesson> lessons = lessonRepository.findAllByTeacherAndCourseAndGroup(teacher, course, group);
         return new Schedule(lessons);
     }
 }

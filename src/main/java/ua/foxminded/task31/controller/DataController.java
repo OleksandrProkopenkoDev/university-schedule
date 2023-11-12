@@ -42,10 +42,7 @@ public class DataController {
         Teacher currentTeacher = getTeacher(params, teachers);
 
         Schedule universitySchedule = scheduleService
-                .getScheduleByTeacherAndCourseAndGroup(currentTeacher, currentCourse,currentGroup);
-
-
-
+                .getScheduleByTeacherAndCourseAndGroup(currentTeacher, currentCourse, currentGroup);
         boolean showGroup = true, showClassroom = true, showCourse = true, showTeacher = true;
         model.addAttribute("teacherId", params.get("teacherId"));
         model.addAttribute("courseId", params.get("courseId"));
@@ -63,10 +60,8 @@ public class DataController {
         model.addAttribute("showClassroom", showClassroom);
         model.addAttribute("showCourse", showCourse);
         model.addAttribute("showTeacher", showTeacher);
-        System.out.println(model.asMap());
         return "schedule";
     }
-
 
 
     @GetMapping("/users")
@@ -108,6 +103,7 @@ public class DataController {
         }
         return currentTeacher;
     }
+
     private Group getGroup(Map<String, String> params, List<Group> groups) {
         Group currentGroup;
         String groupIdStr = params.get("groupId");
