@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <style>
-    .hr-blurry {
-        border: 0;
-        height: 1px;
-        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-        width: 100%;
-    }
-
-    .bottom-line {
-        margin-top: auto;
-    }
-
     /* Add space between rows */
     tr.add-space {
         margin-bottom: 40px; /* Adjust the value as needed */
@@ -81,7 +70,7 @@
             </span>
 
             <div>
-                <label>Group
+                <label style="padding-right: 10px;">Group
                     <input
                             type="checkbox"
                             id="showGroupCheck"
@@ -89,7 +78,7 @@
                             onclick="handleCheckboxClick('showGroupCheck')"
                     />
                 </label>
-                <label>Classroom
+                <label style="padding-right: 10px;">Classroom
                     <input
                             type="checkbox"
                             id="showClassroomCheck"
@@ -97,17 +86,19 @@
                             onclick="handleCheckboxClick('showClassroomCheck')"
                     />
                 </label>
-                <label>Course
+                <label style="padding-right: 10px;">Course
                     <input
                             type="checkbox"
                             id="showCourseCheck"
+                            th:checked="${showCourse}"
                             onclick="handleCheckboxClick('showCourseCheck')"
                     />
                 </label>
-                <label>Teacher
+                <label style="padding-right: 10px;">Teacher
                     <input
                             type="checkbox"
                             id="showTeacherCheck"
+                            th:checked="${showTeacher}"
                             onclick="handleCheckboxClick('showTeacherCheck')"
                     />
                 </label>
@@ -133,17 +124,16 @@
                         <div th:each="lesson : ${cell.lessons}"
                              class="shadow rounded" style="padding: 5px;">
                             <span
-
+                                    th:if="${showCourse}"
                                     th:text="${lesson.course.name}"></span><br/>
                             <span
-
+                                    th:if="${showGroup}"
                                     th:text="${lesson.group.name}"></span><br/>
                             <span
-
+                                    th:if="${showClassroom}"
                                     th:text="${lesson.classroom.number}"></span><br/>
                             <span
-                                    id="teacherDetails"
-                                    th:if=""
+                                    th:if="${showTeacher}"
                                     th:text="${lesson.teacher.firstName + ' ' + lesson.teacher.lastName}"></span>
                         </div>
                     </div>
@@ -166,10 +156,8 @@
         urlParams.forEach((value, key) => {
             if (value === "") {
                 urlParams.delete(key);
-                console.log(urlParams);
             } else {
                 str = str + key + "=" + value + "&";
-
             }
         })
         if (str !== "") {
@@ -179,41 +167,27 @@
     }
 
     // Retrieve and set the initial state of checkboxes from local storage
-    document.getElementById('showCourseCheck').checked = localStorage.getItem('showCourseCheck') === 'true';
-    document.getElementById('showGroupCheck').checked = localStorage.getItem('showGroupCheck') === 'true';
-    document.getElementById('showClassroomCheck').checked = localStorage.getItem('showClassroomCheck') === 'true';
-    document.getElementById('showTeacherCheck').checked = localStorage.getItem('showTeacherCheck') === 'true';
+    // document.getElementById('showCourseCheck').checked = localStorage.getItem('showCourseCheck') === 'true';
+    // document.getElementById('showGroupCheck').checked = localStorage.getItem('showGroupCheck') === 'true';
+    // document.getElementById('showClassroomCheck').checked = localStorage.getItem('showClassroomCheck') === 'true';
+    // document.getElementById('showTeacherCheck').checked = localStorage.getItem('showTeacherCheck') === 'true';
+
 
     // Function to handle checkbox click event
     function handleCheckboxClick(checkboxId) {
+        const checkMap = {
+            showCourseCheck: 'showCourse',
+            showGroupCheck: 'showGroup',
+            showClassroomCheck: 'showClassroom',
+            showTeacherCheck: 'showTeacher'
+        }
         // Toggle the Thymeleaf condition based on the checkbox state
         const checkbox = document.getElementById(checkboxId);
-        console.log(checkbox.id);
-        const teacherDetails = document.getElementById('teacherDetails');
-
-        if (checkbox.checked) {
-            teacherDetails.style.display = 'inline'; // Show the element
-        } else {
-            teacherDetails.style.display = 'none'; // Hide the element
-        }
-/*        // Toggle the visibility of the element based on the checkbox state
-        const checkbox = document.getElementById(checkboxId);
-        const teacherDetails = document.getElementById('teacherDetails');
-
-        if (checkbox.checked) {
-            teacherDetails.style.display = 'inline'; // Show the element
-        } else {
-            teacherDetails.style.display = 'none'; // Hide the element
-        }*/
-
-
-        // Save the checkbox state to local storage
-        localStorage.setItem(checkboxId, document.getElementById(checkboxId).checked);
-        console.log("reloading...")
-        // Reload the page
-        // location.reload();
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set(checkMap[checkboxId], checkbox.checked);
+        console.log(urlParams.toString());
+        window.location.href = generateUrl(urlParams);
     }
-
 
 
     document.getElementById("groupSelect").onchange = function () {

@@ -43,6 +43,13 @@ public class DataController {
 
         Schedule universitySchedule = scheduleService
                 .getScheduleByTeacherAndCourseAndGroup(currentTeacher, currentCourse, currentGroup);
+
+        System.out.println(params.get("showTeacher"));
+
+        model.addAttribute("showGroup", params.get("showGroup"));
+        model.addAttribute("showCourse", params.get("showCourse"));
+        model.addAttribute("showClassroom", params.get("showClassroom"));
+        model.addAttribute("showTeacher", params.get("showTeacher"));
         model.addAttribute("teacherId", params.get("teacherId"));
         model.addAttribute("courseId", params.get("courseId"));
         model.addAttribute("groupId", params.get("groupId"));
