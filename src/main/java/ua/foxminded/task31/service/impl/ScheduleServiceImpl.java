@@ -29,41 +29,6 @@ public class ScheduleServiceImpl implements ScheduleService {
     private final GroupService groupService;
 
     @Override
-    public Schedule getUniversitySchedule() {
-        List<Lesson> lessons = lessonRepository.findAll();
-        return new Schedule(lessons);
-    }
-
-    @Override
-    public Schedule getTeacherSchedule(Teacher teacher) {
-        List<Lesson> lessonsByTeacher = lessonRepository.findAllByTeacher(teacher);
-        return new Schedule(lessonsByTeacher);
-    }
-
-    @Override
-    public Schedule getScheduleByTeacherAndCourseAndGroup(Teacher teacher, Course course, Group group) {
-        List<Lesson> lessons;
-        if (group.getId() != null && teacher.getId() != null && course.getId() != null) {
-            lessons = lessonRepository.findByGroupAndTeacherAndCourse(group, teacher, course);
-        } else if (group.getId() != null && teacher.getId() != null) {
-            lessons = lessonRepository.findByGroupAndTeacher(group, teacher);
-        } else if (group.getId() != null && course.getId() != null) {
-            lessons = lessonRepository.findByGroupAndCourse(group, course);
-        } else if (teacher.getId() != null && course.getId() != null) {
-            lessons = lessonRepository.findByTeacherAndCourse(teacher, course);
-        } else if (group.getId() != null) {
-            lessons = lessonRepository.findByGroup(group);
-        } else if (teacher.getId() != null) {
-            lessons = lessonRepository.findByTeacher(teacher);
-        } else if (course.getId() != null) {
-            lessons = lessonRepository.findByCourse(course);
-        } else {
-            lessons = lessonRepository.findAll();
-        }
-        return new Schedule(lessons);
-    }
-
-    @Override
     public void prepareSchedule(Model model, Map<String, String> params) {
         List<Teacher> teachers = userService.findAllTeachers();
         List<Group> groups = groupService.findAllGroups();
@@ -94,6 +59,40 @@ public class ScheduleServiceImpl implements ScheduleService {
         model.addAttribute("currentGroup", currentGroup);
         model.addAttribute("currentCourse", currentCourse);
         model.addAttribute("currentTeacher", currentTeacher);
+    }
+
+    private Schedule getUniversitySchedule() {
+        List<Lesson> lessons = lessonRepository.findAll();
+        return new Schedule(lessons);
+    }
+
+
+    private Schedule getTeacherSchedule(Teacher teacher) {
+        List<Lesson> lessonsByTeacher = lessonRepository.findAllByTeacher(teacher);
+        return new Schedule(lessonsByTeacher);
+    }
+
+
+    private Schedule getScheduleByTeacherAndCourseAndGroup(Teacher teacher, Course course, Group group) {
+        List<Lesson> lessons;
+        if (group.getId() != null && teacher.getId() != null && course.getId() != null) {
+            lessons = lessonRepository.findByGroupAndTeacherAndCourse(group, teacher, course);
+        } else if (group.getId() != null && teacher.getId() != null) {
+            lessons = lessonRepository.findByGroupAndTeacher(group, teacher);
+        } else if (group.getId() != null && course.getId() != null) {
+            lessons = lessonRepository.findByGroupAndCourse(group, course);
+        } else if (teacher.getId() != null && course.getId() != null) {
+            lessons = lessonRepository.findByTeacherAndCourse(teacher, course);
+        } else if (group.getId() != null) {
+            lessons = lessonRepository.findByGroup(group);
+        } else if (teacher.getId() != null) {
+            lessons = lessonRepository.findByTeacher(teacher);
+        } else if (course.getId() != null) {
+            lessons = lessonRepository.findByCourse(course);
+        } else {
+            lessons = lessonRepository.findAll();
+        }
+        return new Schedule(lessons);
     }
 
     private Teacher getTeacher(Map<String, String> params, List<Teacher> teachers) {

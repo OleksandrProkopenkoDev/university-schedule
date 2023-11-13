@@ -30,7 +30,6 @@ public class DataController {
     @GetMapping("/schedule")
     public String showSchedule(Model model, @RequestParam(required = false) Map<String, String> params) {
         scheduleService.prepareSchedule(model, params);
-
         return "schedule";
     }
 
@@ -60,6 +59,4 @@ public class DataController {
     public String showScheduleConstructor(Model model) {
         return "schedule-constructor";
     }
-
-
 }
