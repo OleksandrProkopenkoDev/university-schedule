@@ -1496,3 +1496,120 @@ org.thymeleaf.exceptions.TemplateProcessingException: Could not parse as express
 
 Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
 2023-11-13T16:24:05.173+02:00  INFO 15984 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-13T16:25:12.270+02:00  INFO 16120 --- [main] u.f.task31.UniversityApplication         : Starting UniversityApplication using Java 20.0.1 with PID 16120 (E:\JavaProjects\FoxmindedCourse\task3.1.university\target\classes started by proko in E:\JavaProjects\FoxmindedCourse\task3.1.university)
+2023-11-13T16:25:12.272+02:00  INFO 16120 --- [main] u.f.task31.UniversityApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-11-13T16:25:12.945+02:00  INFO 16120 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-11-13T16:25:13.022+02:00  INFO 16120 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 69 ms. Found 8 JPA repository interfaces.
+2023-11-13T16:25:13.571+02:00  INFO 16120 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-11-13T16:25:13.581+02:00  INFO 16120 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-11-13T16:25:13.581+02:00  INFO 16120 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-11-13T16:25:13.690+02:00  INFO 16120 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-11-13T16:25:13.691+02:00  INFO 16120 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1362 ms
+2023-11-13T16:25:13.887+02:00  INFO 16120 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.16.3 by Redgate
+2023-11-13T16:25:13.887+02:00  INFO 16120 --- [main] o.f.c.internal.license.VersionPrinter    : See release notes here: https://rd.gt/416ObMi
+2023-11-13T16:25:13.887+02:00  INFO 16120 --- [main] o.f.c.internal.license.VersionPrinter    : 
+2023-11-13T16:25:13.906+02:00  INFO 16120 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-13T16:25:14.094+02:00  INFO 16120 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3d615b2e
+2023-11-13T16:25:14.096+02:00  INFO 16120 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-13T16:25:14.115+02:00  INFO 16120 --- [main] o.f.c.i.database.base.BaseDatabaseType   : Database: jdbc:postgresql://localhost:5432/university (PostgreSQL 15.2)
+2023-11-13T16:25:14.162+02:00  INFO 16120 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.026s)
+2023-11-13T16:25:14.372+02:00  INFO 16120 --- [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2023-11-13T16:25:14.373+02:00  INFO 16120 --- [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2023-11-13T16:25:14.458+02:00  INFO 16120 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-11-13T16:25:14.512+02:00  INFO 16120 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.9.Final
+2023-11-13T16:25:14.514+02:00  INFO 16120 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-11-13T16:25:14.685+02:00  INFO 16120 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-11-13T16:25:14.828+02:00  INFO 16120 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-11-13T16:25:15.116+02:00  INFO 16120 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-11-13T16:25:15.861+02:00  INFO 16120 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-11-13T16:25:15.907+02:00  INFO 16120 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-11-13T16:25:16.142+02:00  INFO 16120 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-11-13T16:25:16.702+02:00  WARN 16120 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-11-13T16:25:17.075+02:00  INFO 16120 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-11-13T16:25:17.083+02:00  INFO 16120 --- [main] u.f.task31.UniversityApplication         : Started UniversityApplication in 5.269 seconds (process running for 5.996)
+2023-11-13T16:25:17.085+02:00  INFO 16120 --- [main] ua.foxminded.task31.service.StartApp     : Starting app data initialization...
+2023-11-13T16:25:17.187+02:00  INFO 16120 --- [main] ua.foxminded.task31.service.StartApp     : App initialization finished.
+2023-11-13T16:25:17.221+02:00  INFO 16120 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-13T16:25:17.222+02:00  INFO 16120 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-11-13T16:25:17.223+02:00  INFO 16120 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-11-13T17:09:21.477+02:00  INFO 16120 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-11-13T17:09:21.479+02:00  INFO 16120 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-13T17:09:21.517+02:00  INFO 16120 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-13T17:09:24.868+02:00  INFO 252 --- [main] u.f.task31.UniversityApplication         : Starting UniversityApplication using Java 20.0.1 with PID 252 (E:\JavaProjects\FoxmindedCourse\task3.1.university\target\classes started by proko in E:\JavaProjects\FoxmindedCourse\task3.1.university)
+2023-11-13T17:09:24.870+02:00  INFO 252 --- [main] u.f.task31.UniversityApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-11-13T17:09:25.688+02:00  INFO 252 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-11-13T17:09:25.774+02:00  INFO 252 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 77 ms. Found 8 JPA repository interfaces.
+2023-11-13T17:09:26.344+02:00  INFO 252 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-11-13T17:09:26.353+02:00  INFO 252 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-11-13T17:09:26.354+02:00  INFO 252 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-11-13T17:09:26.456+02:00  INFO 252 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-11-13T17:09:26.456+02:00  INFO 252 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1531 ms
+2023-11-13T17:09:26.636+02:00  INFO 252 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.16.3 by Redgate
+2023-11-13T17:09:26.636+02:00  INFO 252 --- [main] o.f.c.internal.license.VersionPrinter    : See release notes here: https://rd.gt/416ObMi
+2023-11-13T17:09:26.636+02:00  INFO 252 --- [main] o.f.c.internal.license.VersionPrinter    : 
+2023-11-13T17:09:26.656+02:00  INFO 252 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-13T17:09:26.968+02:00  INFO 252 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@24c685e7
+2023-11-13T17:09:26.970+02:00  INFO 252 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-13T17:09:26.988+02:00  INFO 252 --- [main] o.f.c.i.database.base.BaseDatabaseType   : Database: jdbc:postgresql://localhost:5432/university (PostgreSQL 15.2)
+2023-11-13T17:09:27.035+02:00  INFO 252 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.027s)
+2023-11-13T17:09:27.112+02:00  INFO 252 --- [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2023-11-13T17:09:27.113+02:00  INFO 252 --- [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2023-11-13T17:09:27.212+02:00  INFO 252 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-11-13T17:09:27.279+02:00  INFO 252 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.9.Final
+2023-11-13T17:09:27.281+02:00  INFO 252 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-11-13T17:09:27.473+02:00  INFO 252 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-11-13T17:09:27.636+02:00  INFO 252 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-11-13T17:09:27.981+02:00  INFO 252 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-11-13T17:09:28.802+02:00  INFO 252 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-11-13T17:09:28.847+02:00  INFO 252 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-11-13T17:09:29.095+02:00  INFO 252 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-11-13T17:09:29.670+02:00  WARN 252 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-11-13T17:09:30.066+02:00  INFO 252 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-11-13T17:09:30.076+02:00  INFO 252 --- [main] u.f.task31.UniversityApplication         : Started UniversityApplication in 5.66 seconds (process running for 6.387)
+2023-11-13T17:09:30.078+02:00  INFO 252 --- [main] ua.foxminded.task31.service.StartApp     : Starting app data initialization...
+2023-11-13T17:09:30.155+02:00  INFO 252 --- [main] ua.foxminded.task31.service.StartApp     : App initialization finished.
+2023-11-13T17:09:31.023+02:00  INFO 252 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-13T17:09:31.024+02:00  INFO 252 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-11-13T17:09:31.025+02:00  INFO 252 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-11-13T17:13:29.713+02:00  INFO 252 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-11-13T17:13:29.715+02:00  INFO 252 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-13T17:13:29.723+02:00  INFO 252 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-13T17:13:36.579+02:00  INFO 2760 --- [main] u.f.task31.UniversityApplication         : Starting UniversityApplication using Java 20.0.1 with PID 2760 (E:\JavaProjects\FoxmindedCourse\task3.1.university\target\classes started by proko in E:\JavaProjects\FoxmindedCourse\task3.1.university)
+2023-11-13T17:13:36.581+02:00  INFO 2760 --- [main] u.f.task31.UniversityApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-11-13T17:13:37.246+02:00  INFO 2760 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-11-13T17:13:37.330+02:00  INFO 2760 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 76 ms. Found 8 JPA repository interfaces.
+2023-11-13T17:13:37.905+02:00  INFO 2760 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-11-13T17:13:37.916+02:00  INFO 2760 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-11-13T17:13:37.917+02:00  INFO 2760 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-11-13T17:13:38.024+02:00  INFO 2760 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-11-13T17:13:38.024+02:00  INFO 2760 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1391 ms
+2023-11-13T17:13:38.205+02:00  INFO 2760 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.16.3 by Redgate
+2023-11-13T17:13:38.206+02:00  INFO 2760 --- [main] o.f.c.internal.license.VersionPrinter    : See release notes here: https://rd.gt/416ObMi
+2023-11-13T17:13:38.206+02:00  INFO 2760 --- [main] o.f.c.internal.license.VersionPrinter    : 
+2023-11-13T17:13:38.224+02:00  INFO 2760 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-13T17:13:38.424+02:00  INFO 2760 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@dd3f8aa
+2023-11-13T17:13:38.428+02:00  INFO 2760 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-13T17:13:38.449+02:00  INFO 2760 --- [main] o.f.c.i.database.base.BaseDatabaseType   : Database: jdbc:postgresql://localhost:5432/university (PostgreSQL 15.2)
+2023-11-13T17:13:38.498+02:00  INFO 2760 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.026s)
+2023-11-13T17:13:38.586+02:00  INFO 2760 --- [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2023-11-13T17:13:38.586+02:00  INFO 2760 --- [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2023-11-13T17:13:38.699+02:00  INFO 2760 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-11-13T17:13:38.759+02:00  INFO 2760 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.9.Final
+2023-11-13T17:13:38.762+02:00  INFO 2760 --- [main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-11-13T17:13:38.966+02:00  INFO 2760 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-11-13T17:13:39.129+02:00  INFO 2760 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-11-13T17:13:39.447+02:00  INFO 2760 --- [main] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-11-13T17:13:40.354+02:00  INFO 2760 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-11-13T17:13:40.399+02:00  INFO 2760 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-11-13T17:13:40.637+02:00  INFO 2760 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-11-13T17:13:41.241+02:00  WARN 2760 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-11-13T17:13:41.620+02:00  INFO 2760 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-11-13T17:13:41.628+02:00  INFO 2760 --- [main] u.f.task31.UniversityApplication         : Started UniversityApplication in 5.489 seconds (process running for 6.193)
+2023-11-13T17:13:41.630+02:00  INFO 2760 --- [main] ua.foxminded.task31.service.StartApp     : Starting app data initialization...
+2023-11-13T17:13:41.734+02:00  INFO 2760 --- [main] ua.foxminded.task31.service.StartApp     : App initialization finished.
+2023-11-13T17:13:41.753+02:00  INFO 2760 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-13T17:13:41.753+02:00  INFO 2760 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-11-13T17:13:41.754+02:00  INFO 2760 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-11-13T17:18:33.297+02:00  INFO 2760 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-11-13T17:18:33.301+02:00  INFO 2760 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-13T17:18:33.364+02:00  INFO 2760 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
