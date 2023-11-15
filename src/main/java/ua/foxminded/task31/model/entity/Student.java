@@ -2,6 +2,7 @@ package ua.foxminded.task31.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import ua.foxminded.task31.model.enums.Role;
@@ -37,6 +38,11 @@ public class Student extends UserEntity {
         super.setLastName(lastName);
         this.group = group;
         this.setRole(Role.STUDENT);
+    }
+
+    public Student(String firstName, String lastName, String username, String password, Role role, Group group) {
+        super(firstName, lastName, username, password, role);
+        this.group = group;
     }
 
     @Override

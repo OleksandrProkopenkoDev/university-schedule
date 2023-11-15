@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.6/datatables.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<div class="d-flex">
+    <div th:replace="~{fragments/side-panel :: aside}"></div>
+    <div class="container shadow mb-5 bg-body rounded" style="margin-top: 30px; margin-left: 50px;">
+        <form th:action="@{/users/add-new}" th:object="${user}" method="post">
+            <div class="mb-3 mt-3">
+                <label for="firstName" class="form-label">First name:</label>
+                <input th:field="*{firstName}" type="text" class="form-control" id="firstName"
+                       placeholder="Enter first name" name="firstName">
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="lastName" class="form-label">Last name:</label>
+                <input th:field="*{lastName}" type="text" class="form-control" id="lastName"
+                       placeholder="Enter last name" name="lastName">
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="email" class="form-label">Email:</label>
+                <input th:field="*{email}" type="email" class="form-control" id="email" placeholder="Enter email"
+                       name="email">
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input th:field="*{password}" type="password" class="form-control" id="password"
+                       placeholder="Enter password" name="password">
+            </div>
+            <div class="mb-3">
+                <label for="selectRole" class="form-label">User Role:</label>
+                <select
+                        class="form-select"
+                        aria-label="User's Role"
+                        th:field="*{role}"
+                        id="selectRole"
+                        onchange="handleRoleSelection()"
+                >
+                    <option th:each="role : ${roles}" th:value="${role}" th:text="${role}"
+                            th:selected="${role == 'STUDENT'}"></option>
+                </select>
+            </div>
+
+            <div class="mb-3" id="groupSelection">
+                <label for="groupSelection" class="form-label">Student's Group:</label>
+                <select class="form-select" aria-label="group" th:field="*{group}">
+                    <option th:each="currentGroup : ${groups}" th:value="${currentGroup.id}"
+                            th:text="${currentGroup.name}"></option>
+                </select>
+            </div>
+
+            <div class="mb-3" id="courseSelection">
+                <label for="courseSelection" class="form-label">Teacher's course:</label>
+                <select class="form-select" aria-label="course" th:field="*{course}">
+                    <option th:each="currentCourse : ${courses}" th:value="${currentCourse.id}"
+                            th:text="${currentCourse.name}"></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+            <button type="button" class="btn btn-secondary mb-3" onclick="cancelForm()">Cancel</button>
+        </form>
+
+    </div>
+</div>
+
+
+</body>
+<script th:inline="javascript">
+
+    handleRoleSelection();
+
+    function cancelForm() {
+        window.location.href = '/users';
+    }
+
+    function handleRoleSelection() {
+        const selectedRole = document.getElementById('selectRole').value;
+        const groupSelection = document.getElementById('groupSelection');
+        const courseSelection = document.getElementById('courseSelection');
+
+        if (selectedRole === 'STUDENT') {
+            groupSelection.style.display = 'block';
+            courseSelection.style.display = 'none';
+        } else if (selectedRole === 'TEACHER') {
+            groupSelection.style.display = 'none';
+            courseSelection.style.display = 'block';
+        } else {
+            groupSelection.style.display = 'none';
+            courseSelection.style.display = 'none';
+        }
+    }
+
+</script>
+</html>

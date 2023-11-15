@@ -1,14 +1,16 @@
 package ua.foxminded.task31.controller;
 
+import jakarta.persistence.MapsId;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import ua.foxminded.task31.model.dto.SaveUserDto;
 import ua.foxminded.task31.model.entity.Course;
 import ua.foxminded.task31.model.entity.Group;
 import ua.foxminded.task31.model.entity.UserEntity;
+import ua.foxminded.task31.model.enums.Role;
 import ua.foxminded.task31.service.CourseService;
 import ua.foxminded.task31.service.GroupService;
 import ua.foxminded.task31.service.ScheduleService;
@@ -33,12 +35,31 @@ public class DataController {
         return "schedule";
     }
 
-
     @GetMapping("/users")
     public String showUsers(Model model) {
         List<UserEntity> users = userService.getAllUsers();
         model.addAttribute("users", users);
         return "users";
+    }
+
+    @GetMapping("/users/add-new")
+    public String showSaveUserPage(Model model) {
+
+        model.addAttribute("user", new SaveUserDto());
+
+        return "users/save-user";
+    }
+
+    @PostMapping("/users/add-new")
+    public String saveUser(@ModelAttribute("user") SaveUserDto userDto) {
+        userService.saveUser(userDto);
+        return "redirect:/users";
+    }
+
+    @GetMapping("/users/delete-user/{userId}")
+    public String deleteUser(@PathVariable Long userId) {
+        userService.deleteUser(userId);
+        return "redirect:/users";
     }
 
     @GetMapping("/courses")
@@ -59,4 +80,20 @@ public class DataController {
     public String showScheduleConstructor(Model model) {
         return "schedule-constructor";
     }
+
+    @ModelAttribute("courses")
+    public List<Course> getCourses(){
+        return courseService.findAllCourses();
+    }
+
+    @ModelAttribute("groups")
+    public List<Group> getGroups(){
+        return groupService.findAllGroups();
+    }
+
+    @ModelAttribute("roles")
+    public Role[] getRoles(){
+        return Role.values();
+    }
+
 }

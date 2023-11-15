@@ -2,6 +2,8 @@ package ua.foxminded.task31.model.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import ua.foxminded.task31.model.enums.Role;
@@ -19,5 +21,9 @@ public class Admin extends UserEntity {
     public Admin(String firstName, String lastName) {
         super(firstName, lastName);
         this.setRole(Role.ADMIN);
+    }
+
+    public Admin(String firstName, String lastName, String username, String password, Role role) {
+        super(firstName, lastName, username, password, role);
     }
 }
