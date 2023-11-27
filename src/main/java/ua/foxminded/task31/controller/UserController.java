@@ -30,9 +30,9 @@ public class UserController {
 
     @GetMapping("/add-new")
     public String showSaveUserPage(Model model) {
-
-        model.addAttribute("user", new SaveUserDto());
-
+            if(model.getAttribute("user") == null) {
+                model.addAttribute("user", new SaveUserDto());
+            }
         return "users/save-user";
     }
 
@@ -50,6 +50,13 @@ public class UserController {
     public String deleteUser(@PathVariable Long userId) {
         userService.deleteUser(userId);
         return "redirect:/users";
+    }
+
+    @GetMapping("/update")
+    public String updateUser(@RequestParam("userId") Long userId, Model model) {
+        SaveUserDto userEntity = userService.findById(userId);
+        model.addAttribute("user", userEntity);
+        return "users/save-user";
     }
 
 }

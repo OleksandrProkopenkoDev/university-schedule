@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ua.foxminded.task31.exception.DaoException;
 import ua.foxminded.task31.model.dto.SaveUserDto;
-import ua.foxminded.task31.model.entity.Admin;
-import ua.foxminded.task31.model.entity.Student;
-import ua.foxminded.task31.model.entity.Teacher;
-import ua.foxminded.task31.model.entity.UserEntity;
+import ua.foxminded.task31.model.entity.*;
 import ua.foxminded.task31.model.enums.Role;
 import ua.foxminded.task31.repository.AdminRepository;
 import ua.foxminded.task31.repository.StudentRepository;
@@ -65,8 +62,41 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(userId);
     }
 
+    @Override
+    public SaveUserDto findById(Long userId) {
+        UserEntity userEntity = userRepository
+                .findById(userId)
+                .orElseThrow(
+                        () -> new DaoException(format("User with id [%s] is not found", userId))
+                );
+        return mapUserEntityToDto(userEntity);
+    }
+
+    private SaveUserDto mapUserEntityToDto(UserEntity userEntity) {
+        Role role = userEntity.getRole();
+        Group group = null;
+        Course course = null;
+        if(role.equals(Role.STUDENT)){
+            group = studentRepository.findById(userEntity.getId()).get().getGroup();
+        }
+        if(role.equals(Role.TEACHER)){
+            course = teacherRepository.findById(userEntity.getId()).get().getTeachCourse();
+        }
+       return new SaveUserDto(
+             userEntity.getId(),
+               userEntity.getFirstName(),
+               userEntity.getLastName(),
+               userEntity.getUsername(),
+               userEntity.getPassword(),
+               role,
+               group,
+               course
+        );
+    }
+
     private Admin mapUserDtoToAdmin(SaveUserDto userDto) {
         return new Admin(
+                userDto.getId(),
                 userDto.getFirstName(),
                 userDto.getLastName(),
                 userDto.getEmail(),
@@ -77,6 +107,7 @@ public class UserServiceImpl implements UserService {
 
     private Teacher mapUserDtoToTeacher(SaveUserDto userDto) {
         return new Teacher(
+                userDto.getId(),
                 userDto.getFirstName(),
                 userDto.getLastName(),
                 userDto.getEmail(),
@@ -88,6 +119,7 @@ public class UserServiceImpl implements UserService {
 
     private Student mapUserDtoToStudent(SaveUserDto userDto) {
         return new Student(
+                userDto.getId(),
                 userDto.getFirstName(),
                 userDto.getLastName(),
                 userDto.getEmail(),

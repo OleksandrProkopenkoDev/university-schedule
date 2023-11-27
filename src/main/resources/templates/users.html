@@ -39,7 +39,7 @@
                 <td th:text="${user.lastName}"></td>
                 <td th:text="${user.role}"></td>
                 <td>
-                    <a th:href="@{/update-user(userId=${user.id})}" class="btn btn-info">Update</a>
+                    <a th:href="@{/users/update(userId=${user.id})}" class="btn btn-info">Update</a>
                     <button type="button" class="btn btn-danger m-lg-2" th:attr="onclick=|confirmDelete('${user.id}')|">Delete</button>
                 </td>
 

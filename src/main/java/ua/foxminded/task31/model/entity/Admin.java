@@ -26,4 +26,8 @@ public class Admin extends UserEntity {
     public Admin(String firstName, String lastName, String username, String password, Role role) {
         super(firstName, lastName, username, password, role);
     }
+
+    public Admin(Long id, String firstName, String lastName, String username, String password, Role role) {
+        super(id, firstName, lastName, username, password, role);
+    }
 }

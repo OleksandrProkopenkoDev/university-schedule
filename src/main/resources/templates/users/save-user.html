@@ -16,6 +16,7 @@
     <div th:replace="~{fragments/side-panel :: aside}"></div>
     <div class="container shadow mb-5 bg-body rounded" style="margin-top: 30px; margin-left: 50px;">
         <form th:action="@{/users/add-new}" th:object="${user}" method="post">
+            <input th:if="${user.id}" type="hidden" th:field="*{id}" />
             <div th:if="${#fields.hasErrors('firstName')}" class="alert alert-danger">
                 <p th:text="${#fields.errors('firstName')}"></p>
             </div>

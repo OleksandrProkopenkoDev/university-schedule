@@ -31,4 +31,9 @@ public class Teacher extends UserEntity {
         super(firstName, lastName, username, password, role);
         this.teachCourse = teachCourse;
     }
+
+    public Teacher(Long id, String firstName, String lastName, String username, String password, Role role, Course course) {
+        super(id, firstName, lastName, username, password, role);
+        this.teachCourse = course;
+    }
 }

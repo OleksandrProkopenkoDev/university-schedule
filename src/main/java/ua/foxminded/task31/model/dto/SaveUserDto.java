@@ -16,6 +16,7 @@ import ua.foxminded.task31.model.enums.Role;
 @Data
 @Builder
 public class SaveUserDto {
+    private Long id;
     @NotEmpty(message = "First name can't be empty")
     private String firstName;
     @NotEmpty(message = "Last name can't be empty")

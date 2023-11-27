@@ -45,6 +45,11 @@ public class Student extends UserEntity {
         this.group = group;
     }
 
+    public Student(Long id, String firstName, String lastName, String username, String password, Role role, Group group) {
+        super(id, firstName, lastName, username, password, role);
+        this.group = group;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
