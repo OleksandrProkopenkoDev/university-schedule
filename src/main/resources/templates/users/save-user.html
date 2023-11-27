@@ -16,22 +16,33 @@
     <div th:replace="~{fragments/side-panel :: aside}"></div>
     <div class="container shadow mb-5 bg-body rounded" style="margin-top: 30px; margin-left: 50px;">
         <form th:action="@{/users/add-new}" th:object="${user}" method="post">
+            <div th:if="${#fields.hasErrors('firstName')}" class="alert alert-danger">
+                <p th:text="${#fields.errors('firstName')}"></p>
+            </div>
             <div class="mb-3 mt-3">
                 <label for="firstName" class="form-label">First name:</label>
                 <input th:field="*{firstName}" type="text" class="form-control" id="firstName"
                        placeholder="Enter first name" name="firstName">
+            </div>
+            <div th:if="${#fields.hasErrors('lastName')}" class="alert alert-danger">
+                <p th:text="${#fields.errors('lastName')}"></p>
             </div>
             <div class="mb-3 mt-3">
                 <label for="lastName" class="form-label">Last name:</label>
                 <input th:field="*{lastName}" type="text" class="form-control" id="lastName"
                        placeholder="Enter last name" name="lastName">
             </div>
+            <div th:if="${#fields.hasErrors('email')}" class="alert alert-danger">
+                <p th:text="${#fields.errors('email')}"></p>
+            </div>
             <div class="mb-3 mt-3">
                 <label for="email" class="form-label">Email:</label>
                 <input th:field="*{email}" type="email" class="form-control" id="email" placeholder="Enter email"
                        name="email">
             </div>
-
+            <div th:if="${#fields.hasErrors('password')}" class="alert alert-danger">
+                <p th:text="${#fields.errors('password')}"></p>
+            </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password:</label>
                 <input th:field="*{password}" type="password" class="form-control" id="password"
@@ -66,6 +77,7 @@
                             th:text="${currentCourse.name}"></option>
                 </select>
             </div>
+
             <button type="submit" class="btn btn-primary mb-3">Submit</button>
             <button type="button" class="btn btn-secondary mb-3" onclick="cancelForm()">Cancel</button>
         </form>
