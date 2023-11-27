@@ -5,12 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
-import ua.foxminded.task31.model.entity.Course;
 import ua.foxminded.task31.model.entity.Group;
-import ua.foxminded.task31.model.enums.Role;
-import ua.foxminded.task31.service.CourseService;
 import ua.foxminded.task31.service.GroupService;
 import ua.foxminded.task31.service.ScheduleService;
 
@@ -22,7 +18,6 @@ import java.util.Map;
 @AllArgsConstructor
 public class DataController {
 
-    private final CourseService courseService;
     private final GroupService groupService;
     private final ScheduleService scheduleService;
 
@@ -32,12 +27,6 @@ public class DataController {
         return "schedule";
     }
 
-    @GetMapping("/courses")
-    public String showCourses(Model model) {
-        List<Course> courses = courseService.findAllCourses();
-        model.addAttribute("courses", courses);
-        return "courses";
-    }
 
     @GetMapping("/groups")
     public String showGroups(Model model) {

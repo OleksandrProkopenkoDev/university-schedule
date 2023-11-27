@@ -71,7 +71,7 @@
         function confirmDelete(userId) {
             const confirmed = confirm('Are you sure you want to delete this user?');
             if (confirmed) {
-                window.location.href = '/users/delete-user/' + userId;
+                window.location.href = '/users/delete?userId=' + userId;
             }
         }
     </script>

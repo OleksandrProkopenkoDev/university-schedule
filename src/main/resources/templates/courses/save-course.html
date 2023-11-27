@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.6/datatables.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<div class="d-flex">
+    <div th:replace="~{fragments/side-panel :: aside}"></div>
+
+    <div class="container shadow mb-5 bg-body rounded" style="margin-top: 30px; margin-left: 50px;">
+        <form th:action="@{/courses/add-new}" th:object="${course}" method="post">
+
+            <input th:if="${course.id}" type="hidden" th:field="*{id}" />
+
+            <div th:if="${#fields.hasErrors('name')}" class="alert alert-danger">
+                <p th:text="${#fields.errors('name')}"></p>
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="name" class="form-label">First name:</label>
+                <input th:field="*{name}" type="text" class="form-control" id="name"
+                       placeholder="Enter course name" name="name">
+            </div>
+            <div th:if="${#fields.hasErrors('description')}" class="alert alert-danger">
+                <p th:text="${#fields.errors('description')}"></p>
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="description" class="form-label">Last name:</label>
+                <input th:field="*{description}" type="text" class="form-control" id="description"
+                       placeholder="Enter course description" name="description">
+            </div>
+
+            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+            <button type="button" class="btn btn-secondary mb-3" onclick="cancelForm()">Cancel</button>
+        </form>
+
+    </div>
+</div>
+
+
+</body>
+<script th:inline="javascript">
+
+    function cancelForm() {
+        window.location.href = '/courses';
+    }
+
+</script>
+</html>

@@ -15,7 +15,9 @@
     <div th:replace="~{fragments/side-panel :: aside}"></div>
     <div class="container shadow mb-5 bg-body rounded" style="margin-top: 30px; margin-left: 50px;">
         <h2>Courses List</h2>
-        <table class="table table-bordered table-striped" id="users-table">
+        <a th:href="@{/courses/add-new}" class="btn btn-info mb-3">Add new Course</a>
+
+        <table class="table table-bordered table-striped" id="courses-table">
             <thead>
             <tr>
                 <th>Course Name</th>
@@ -28,8 +30,10 @@
                 <td th:text="${course.name}"></td>
                 <td th:text="${course.description}"></td>
                 <td>
-                    <a th:href="@{/show-update-form(courseId=${course.id})}" class="btn btn-info">Update</a>
-                    <a th:href="@{/delete-user(courseId=${course.id})}" class="btn btn-danger m-lg-2">Delete</a>
+                    <a th:href="@{/courses/update(courseId=${course.id})}" class="btn btn-info">Update</a>
+                    <button type="button" class="btn btn-danger m-lg-2" th:attr="onclick=|confirmDelete('${course.id}')|">
+                        Delete
+                    </button>
                 </td>
             </tr>
             </tbody>
@@ -37,9 +41,18 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-1.13.6/datatables.min.js"></script>
+
+    <script th:inline="javascript">
+        function confirmDelete(courseId) {
+            const confirmed = confirm('Are you sure you want to delete this user?');
+            if (confirmed) {
+                window.location.href = '/courses/delete?courseId='+courseId;
+            }
+        }
+    </script>
     <script>
         $(document).ready(function () {
-            $("#users-table").DataTable(
+            $("#courses-table").DataTable(
                 {
                     'aoColumnDefs': [
                         {

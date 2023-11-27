@@ -46,8 +46,8 @@ public class UserController {
         return "redirect:/users"; // Redirect to the user list page
     }
 
-    @GetMapping("/delete-user/{userId}")
-    public String deleteUser(@PathVariable Long userId) {
+    @GetMapping("/delete")
+    public String deleteUser(@RequestParam("userId") Long userId) {
         userService.deleteUser(userId);
         return "redirect:/users";
     }
