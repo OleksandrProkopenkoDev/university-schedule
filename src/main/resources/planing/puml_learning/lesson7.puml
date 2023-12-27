@@ -1,0 +1,6 @@
+@startuml
+
+Alice-> Alice: This is a signal to self.\nIt also demonstrates\nmultiline\ntest
+Alice<- Alice: This is a signal to self.\nIt also demonstrates\nmultiline\ntest
+
+@enduml

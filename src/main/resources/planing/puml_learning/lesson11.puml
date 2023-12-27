@@ -1,0 +1,15 @@
+@startuml
+
+autonumber
+Bob -> Alice : auth request
+Bob <- Alice : auth response
+
+autonumber 15
+Bob -> Alice : auth request
+Bob <- Alice : auth response
+
+autonumber 40 10
+Bob -> Alice : auth request
+Bob <- Alice : auth response
+
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+
+skinparam sequenceMessageAlign right
+Bob -> Alice: Request asdfasdfasdf
+Alice -> Bob : Response
+
+skinparam responseMessageBelowArrow true
+Bob -> Alice: Request asdfasdfasdf
+Alice -> Bob : Response
+
+@enduml
